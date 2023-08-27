@@ -17,6 +17,8 @@
 		44FD4BFE2A9B424E002DC476 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44FD4BFD2A9B424E002DC476 /* SceneDelegate.swift */; };
 		44FD4C002A9B427A002DC476 /* ApplicationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44FD4BFF2A9B427A002DC476 /* ApplicationController.swift */; };
 		44FD4C042A9B434F002DC476 /* StartFlowCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44FD4C032A9B434F002DC476 /* StartFlowCoordinator.swift */; };
+		44FD4C0F2A9B48A3002DC476 /* Dependencies in Frameworks */ = {isa = PBXBuildFile; productRef = 44FD4C0E2A9B48A3002DC476 /* Dependencies */; };
+		44FD4C122A9B497C002DC476 /* KeychainAccess in Frameworks */ = {isa = PBXBuildFile; productRef = 44FD4C112A9B497C002DC476 /* KeychainAccess */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,6 +61,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				44FD4C122A9B497C002DC476 /* KeychainAccess in Frameworks */,
+				44FD4C0F2A9B48A3002DC476 /* Dependencies in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -102,15 +106,16 @@
 		44FD4BCF2A9B4055002DC476 /* MediaViewer */ = {
 			isa = PBXGroup;
 			children = (
-				44FD4C052A9B4513002DC476 /* Info.plist */,
+				44FD4C142A9B49A4002DC476 /* Services */,
+				44FD4C132A9B4991002DC476 /* Models */,
 				44FD4C012A9B4334002DC476 /* AppFlows */,
-				44FD4BFB2A9B421F002DC476 /* AppDelegate.swift */,
-				44FD4BFD2A9B424E002DC476 /* SceneDelegate.swift */,
-				44FD4BFF2A9B427A002DC476 /* ApplicationController.swift */,
-				44FD4BD22A9B4055002DC476 /* ContentView.swift */,
-				44FD4BD42A9B4058002DC476 /* Assets.xcassets */,
-				44FD4BD62A9B4058002DC476 /* MediaViewer.entitlements */,
 				44FD4BD72A9B4058002DC476 /* Preview Content */,
+				44FD4BD62A9B4058002DC476 /* MediaViewer.entitlements */,
+				44FD4C052A9B4513002DC476 /* Info.plist */,
+				44FD4BFB2A9B421F002DC476 /* AppDelegate.swift */,
+				44FD4BFF2A9B427A002DC476 /* ApplicationController.swift */,
+				44FD4BFD2A9B424E002DC476 /* SceneDelegate.swift */,
+				44FD4BD42A9B4058002DC476 /* Assets.xcassets */,
 			);
 			path = MediaViewer;
 			sourceTree = "<group>";
@@ -143,6 +148,7 @@
 		44FD4C012A9B4334002DC476 /* AppFlows */ = {
 			isa = PBXGroup;
 			children = (
+				44FD4C062A9B4803002DC476 /* SignIn */,
 				44FD4C022A9B4340002DC476 /* Start */,
 			);
 			path = AppFlows;
@@ -154,6 +160,28 @@
 				44FD4C032A9B434F002DC476 /* StartFlowCoordinator.swift */,
 			);
 			path = Start;
+			sourceTree = "<group>";
+		};
+		44FD4C062A9B4803002DC476 /* SignIn */ = {
+			isa = PBXGroup;
+			children = (
+				44FD4BD22A9B4055002DC476 /* ContentView.swift */,
+			);
+			path = SignIn;
+			sourceTree = "<group>";
+		};
+		44FD4C132A9B4991002DC476 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		44FD4C142A9B49A4002DC476 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Services;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -172,6 +200,10 @@
 			dependencies = (
 			);
 			name = MediaViewer;
+			packageProductDependencies = (
+				44FD4C0E2A9B48A3002DC476 /* Dependencies */,
+				44FD4C112A9B497C002DC476 /* KeychainAccess */,
+			);
 			productName = MediaViewer;
 			productReference = 44FD4BCD2A9B4055002DC476 /* MediaViewer.app */;
 			productType = "com.apple.product-type.application";
@@ -244,6 +276,10 @@
 				Base,
 			);
 			mainGroup = 44FD4BC42A9B4055002DC476;
+			packageReferences = (
+				44FD4C0D2A9B48A3002DC476 /* XCRemoteSwiftPackageReference "swift-dependencies" */,
+				44FD4C102A9B497C002DC476 /* XCRemoteSwiftPackageReference "KeychainAccess" */,
+			);
 			productRefGroup = 44FD4BCE2A9B4055002DC476 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -647,6 +683,38 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		44FD4C0D2A9B48A3002DC476 /* XCRemoteSwiftPackageReference "swift-dependencies" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/pointfreeco/swift-dependencies.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
+		44FD4C102A9B497C002DC476 /* XCRemoteSwiftPackageReference "KeychainAccess" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/kishikawakatsumi/KeychainAccess.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		44FD4C0E2A9B48A3002DC476 /* Dependencies */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 44FD4C0D2A9B48A3002DC476 /* XCRemoteSwiftPackageReference "swift-dependencies" */;
+			productName = Dependencies;
+		};
+		44FD4C112A9B497C002DC476 /* KeychainAccess */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 44FD4C102A9B497C002DC476 /* XCRemoteSwiftPackageReference "KeychainAccess" */;
+			productName = KeychainAccess;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 44FD4BC52A9B4055002DC476 /* Project object */;
 }
