@@ -12,14 +12,10 @@ public final class StartFlowCoordinator {
 
     /// Entry point to the flow
     public func start() {
-        let view = UIViewController()
-        view.title = "test"
-        view.view.backgroundColor = .white
-        navigation.setViewControllers([view], animated: true)
-//        if authClient.isAuthorized() {
-//            HomeFlowCoordinator(with: navigation).start()
-//        } else {
-//            SignInFlowCoordinator(with: navigation).start()
-//        }
+        if AuthSession(appEnv: .live()).isAuthorized() {
+            HomeFlowCoordinator(with: navigation).start()
+        } else {
+            SignInFlowCoordinator(with: navigation).start()
+        }
     }
 }

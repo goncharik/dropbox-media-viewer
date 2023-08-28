@@ -8,6 +8,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
 
         let navigation = UINavigationController()
+        navigation.navigationBar.prefersLargeTitles = true
         let window = UIWindow(windowScene: windowScene)
         window.rootViewController = navigation
         window.makeKeyAndVisible()
@@ -16,6 +17,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         applicationController = ApplicationController(navigation: navigation)
         applicationController?.setupWithLaunchOptions(connectionOptions)
     }
+    
+    func scene(_ scene: UIScene, openURLContexts URLContexts: Set<UIOpenURLContext>) {
+        print("Opening url:", URLContexts)
+        print("Done")
+    }    
 
     func sceneDidDisconnect(_: UIScene) {
         // Called as the scene is being released by the system.
