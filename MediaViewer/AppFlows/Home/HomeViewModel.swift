@@ -13,7 +13,7 @@ final class HomeViewModel: ObservableObject  {
     }
 
     struct Dependencies {
-        // ADD DEPENDENCIES HERE    
+        var authClient: AuthClient
     }
 
     private let dependencies: Dependencies
@@ -49,7 +49,7 @@ final class HomeViewModel: ObservableObject  {
     }
 
     func logout() async {
-        await AuthSession(appEnv: .live()).logout()
+        await dependencies.authClient.logout()
         navHandler(.logout)
     }
 }

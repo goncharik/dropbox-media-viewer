@@ -27,10 +27,16 @@ struct HomeView: View {
     }
 }
 
+// MARK: - Preview
+
+import Dependencies
 #Preview {
-    HomeView(
+    @Dependency(\.authClient) var authClient
+    return HomeView(
         viewModel: HomeViewModel(
-            dependencies: .init(),
+            dependencies: .init(
+                authClient: authClient            
+            ),
             navHandler: { _ in }
         )
     )

@@ -8,6 +8,7 @@ final class DropBoxOauthViewModel {
     }
 
     struct Dependencies {
+        var appEnv: AppEnv
         var authClient: AuthClient
     }
 
@@ -30,7 +31,7 @@ final class DropBoxOauthViewModel {
     }
 
     func redirectUri() -> String {
-        dependencies.authClient.defaultRedirectUri
+        dependencies.appEnv.defaultRedirectUri
     }
 
     func processAuthCode(_ authorizationCode: String) async {
@@ -40,15 +41,12 @@ final class DropBoxOauthViewModel {
         isLoading = true
         print("Code:", authorizationCode)
         
-        let session = AuthSession(appEnv: .live())
         do {
-            let token = try await session.obtainToken(for: authorizationCode)
-            print("Obtained token:", token)
+            try await dependencies.authClient.signIn(authorizationCode)
+            navHandler(.signedIn)
         } catch {
             self.error = error
             print("Error:", error)
         }
-        
-        navHandler(.signedIn)
     }
 }

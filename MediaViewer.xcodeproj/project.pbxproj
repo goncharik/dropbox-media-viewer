@@ -13,6 +13,12 @@
 		441A29D32A9CF6CB00E69ABB /* IdentifiedCollections in Frameworks */ = {isa = PBXBuildFile; productRef = 441A29D22A9CF6CB00E69ABB /* IdentifiedCollections */; };
 		441A29D52A9CF7D600E69ABB /* Isolated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 441A29D42A9CF7D600E69ABB /* Isolated.swift */; };
 		441A29D72A9CFD2900E69ABB /* ErrorViewModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 441A29D62A9CFD2900E69ABB /* ErrorViewModifier.swift */; };
+		441A29D92A9DFAB100E69ABB /* ApiClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 441A29D82A9DFAB100E69ABB /* ApiClient.swift */; };
+		441A29DB2A9DFB8900E69ABB /* TokenStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 441A29DA2A9DFB8900E69ABB /* TokenStorage.swift */; };
+		441A29DD2A9DFBC400E69ABB /* AuthToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 441A29DC2A9DFBC400E69ABB /* AuthToken.swift */; };
+		441A29DF2A9DFBF100E69ABB /* JSONCoders.swift in Sources */ = {isa = PBXBuildFile; fileRef = 441A29DE2A9DFBF100E69ABB /* JSONCoders.swift */; };
+		441A29E12A9DFF3F00E69ABB /* HTTPClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 441A29E02A9DFF3F00E69ABB /* HTTPClient.swift */; };
+		441A29E32A9DFFE000E69ABB /* AuthSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 441A29E22A9DFFE000E69ABB /* AuthSession.swift */; };
 		44E5EF382A9BB28C002F096B /* DropBoxOauthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44E5EF362A9BB28C002F096B /* DropBoxOauthViewController.swift */; };
 		44E5EF392A9BB28C002F096B /* DropBoxOauthViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44E5EF372A9BB28C002F096B /* DropBoxOauthViewModel.swift */; };
 		44E5EF3B2A9BB385002F096B /* ErrorPresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44E5EF3A2A9BB385002F096B /* ErrorPresentable.swift */; };
@@ -59,6 +65,12 @@
 		441A29CD2A9CF18800E69ABB /* HomeFlowCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeFlowCoordinator.swift; sourceTree = "<group>"; };
 		441A29D42A9CF7D600E69ABB /* Isolated.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Isolated.swift; sourceTree = "<group>"; };
 		441A29D62A9CFD2900E69ABB /* ErrorViewModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorViewModifier.swift; sourceTree = "<group>"; };
+		441A29D82A9DFAB100E69ABB /* ApiClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiClient.swift; sourceTree = "<group>"; };
+		441A29DA2A9DFB8900E69ABB /* TokenStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenStorage.swift; sourceTree = "<group>"; };
+		441A29DC2A9DFBC400E69ABB /* AuthToken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthToken.swift; sourceTree = "<group>"; };
+		441A29DE2A9DFBF100E69ABB /* JSONCoders.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONCoders.swift; sourceTree = "<group>"; };
+		441A29E02A9DFF3F00E69ABB /* HTTPClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPClient.swift; sourceTree = "<group>"; };
+		441A29E22A9DFFE000E69ABB /* AuthSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthSession.swift; sourceTree = "<group>"; };
 		44E5EF362A9BB28C002F096B /* DropBoxOauthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropBoxOauthViewController.swift; sourceTree = "<group>"; };
 		44E5EF372A9BB28C002F096B /* DropBoxOauthViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropBoxOauthViewModel.swift; sourceTree = "<group>"; };
 		44E5EF3A2A9BB385002F096B /* ErrorPresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorPresentable.swift; sourceTree = "<group>"; };
@@ -121,6 +133,16 @@
 				441A29CD2A9CF18800E69ABB /* HomeFlowCoordinator.swift */,
 			);
 			path = Home;
+			sourceTree = "<group>";
+		};
+		441A29E42A9E0ACE00E69ABB /* ApiClient */ = {
+			isa = PBXGroup;
+			children = (
+				441A29D82A9DFAB100E69ABB /* ApiClient.swift */,
+				441A29E22A9DFFE000E69ABB /* AuthSession.swift */,
+				441A29E02A9DFF3F00E69ABB /* HTTPClient.swift */,
+			);
+			path = ApiClient;
 			sourceTree = "<group>";
 		};
 		44FD4BC42A9B4055002DC476 = {
@@ -219,6 +241,7 @@
 		44FD4C132A9B4991002DC476 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				441A29DC2A9DFBC400E69ABB /* AuthToken.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -226,9 +249,11 @@
 		44FD4C142A9B49A4002DC476 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				441A29E42A9E0ACE00E69ABB /* ApiClient */,
 				44FD4C1E2A9B5BF6002DC476 /* AppEnv.swift */,
 				44FD4C202A9B5C40002DC476 /* AuthClient.swift */,
 				44FD4C222A9B5C6E002DC476 /* DropBoxClient.swift */,
+				441A29DA2A9DFB8900E69ABB /* TokenStorage.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -240,6 +265,7 @@
 				44E5EF3A2A9BB385002F096B /* ErrorPresentable.swift */,
 				441A29D62A9CFD2900E69ABB /* ErrorViewModifier.swift */,
 				441A29D42A9CF7D600E69ABB /* Isolated.swift */,
+				441A29DE2A9DFBF100E69ABB /* JSONCoders.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -386,6 +412,7 @@
 			files = (
 				44E5EF392A9BB28C002F096B /* DropBoxOauthViewModel.swift in Sources */,
 				44FD4C1D2A9B4D15002DC476 /* AsyncButton.swift in Sources */,
+				441A29E12A9DFF3F00E69ABB /* HTTPClient.swift in Sources */,
 				44FD4C182A9B4A3E002DC476 /* SignInView.swift in Sources */,
 				441A29D02A9CF18800E69ABB /* HomeFlowCoordinator.swift in Sources */,
 				441A29CF2A9CF18800E69ABB /* HomeViewModel.swift in Sources */,
@@ -394,7 +421,10 @@
 				441A29D72A9CFD2900E69ABB /* ErrorViewModifier.swift in Sources */,
 				44FD4C192A9B4A3E002DC476 /* SignInViewModel.swift in Sources */,
 				44FD4C1F2A9B5BF6002DC476 /* AppEnv.swift in Sources */,
+				441A29DB2A9DFB8900E69ABB /* TokenStorage.swift in Sources */,
+				441A29E32A9DFFE000E69ABB /* AuthSession.swift in Sources */,
 				44FD4C1A2A9B4A3E002DC476 /* SignInFlowCoordinator.swift in Sources */,
+				441A29DF2A9DFBF100E69ABB /* JSONCoders.swift in Sources */,
 				44E5EF3B2A9BB385002F096B /* ErrorPresentable.swift in Sources */,
 				44FD4C212A9B5C40002DC476 /* AuthClient.swift in Sources */,
 				44E5EF382A9BB28C002F096B /* DropBoxOauthViewController.swift in Sources */,
@@ -403,6 +433,8 @@
 				44FD4C042A9B434F002DC476 /* StartFlowCoordinator.swift in Sources */,
 				44FD4BFE2A9B424E002DC476 /* SceneDelegate.swift in Sources */,
 				44FD4C002A9B427A002DC476 /* ApplicationController.swift in Sources */,
+				441A29D92A9DFAB100E69ABB /* ApiClient.swift in Sources */,
+				441A29DD2A9DFBC400E69ABB /* AuthToken.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
