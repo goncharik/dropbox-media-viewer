@@ -2,8 +2,9 @@ import Dependencies
 import UIKit
 
 protocol DataCache {
-    func store(url: URL, for key: String)
-    func cachedUrl(for key: String) -> URL?
+    @discardableResult
+    func store(url: URL, for key: String, ext: String?) -> URL?
+    func cachedUrl(for key: String, ext: String?) -> URL?
     func write(data: Data, for key: String)
     func readData(for key: String) -> Data?
     func hasData(for key: String) -> Bool
@@ -47,22 +48,28 @@ final class DataCacheImpl: DataCache {
 
     // MARK: - Write data
 
-    func store(url: URL, for key: String) {
+    @discardableResult
+    func store(url: URL, for key: String, ext: String?) -> URL? {
         if fileManager.fileExists(atPath: cachePath) == false {
             do {
                 try fileManager.createDirectory(atPath: cachePath, withIntermediateDirectories: true, attributes: nil)
             } catch {
                 print("DataCache: Error while creating cache folder: \(error.localizedDescription)")
-                return
+                return nil
             }
         }
 
         do {
-            let destinationPath = cachePath(forKey: key)
+            var destinationPath = cachePath(forKey: key)
+            if let ext {
+                destinationPath += ".\(ext)"
+            }
             try fileManager.moveItem(atPath: url.path, toPath: destinationPath)
         } catch {
             print("DataCache: Error while moving file from url to cache folder: \(error.localizedDescription)")
         }
+
+        return cachedUrl(for: key, ext: ext)
     }
 
     func write(data: Data, for key: String) {
@@ -86,8 +93,11 @@ final class DataCacheImpl: DataCache {
 
     // MARK: - Read data
 
-    func cachedUrl(for key: String) -> URL? {
-        let path = cachePath(forKey: key)
+    func cachedUrl(for key: String, ext: String?) -> URL? {
+        var path = cachePath(forKey: key)
+        if let ext {
+            path += ".\(ext)"
+        }
         if fileManager.fileExists(atPath: path) {
             return NSURL.fileURL(withPath: path)
         } else {

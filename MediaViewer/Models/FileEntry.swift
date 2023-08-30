@@ -58,6 +58,10 @@ extension FileEntry {
             || name.hasSuffix(".mov")
             || name.hasSuffix(".avi")
     }
+
+    var ext: String? {
+        name.components(separatedBy: ".").last
+    }
 }
 
 // MARK: - Mocks and stubs

@@ -73,9 +73,20 @@ final class FileEntryRepositoryImpl: FileEntryRepository, ObservableObject {
         self.cursor = response.cursor
         self.hasMore = response.hasMore
 
-        return response.entries.filter {
+        let entries = response.entries.filter {
             $0.isImage || $0.isVideo
         }
+
+        guard !entries.isEmpty else {
+            // If this page doesn't have any media files, load the next page            
+            if let cursor, hasMore {
+                return try await fetchMediaFiles(cursor)
+            } else {
+                return []
+            }
+        }
+
+        return entries
     }
 }
 

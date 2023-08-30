@@ -87,22 +87,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "808ED6F6-B26B-4ADF-9DAF-68C4C31A160A"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "MediaViewer/AppFlows/Home/HomeViewModel.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "58"
-            endingLineNumber = "58"
-            landmarkName = "init(dependencies:navHandler:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             uuid = "18DD14A2-EE88-4BC6-88A0-2E4B2E18B21E"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
@@ -174,6 +158,197 @@
                   startingLineNumber = "59"
                   endingLineNumber = "59"
                   offsetFromSymbolStart = "44">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "C124D3B8-C780-4C17-80A5-6E770D24A1B9"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MediaViewer/Services/ApiClient/AuthSession.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "90"
+            endingLineNumber = "90"
+            landmarkName = "refreshToken()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "C124D3B8-C780-4C17-80A5-6E770D24A1B9 - 9a459be5f94c59e3"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(3) suspend resume partial function for closure #1 @Sendable () async throws -&gt; MediaViewer.AuthToken in MediaViewer.AuthSession.refreshToken() async throws -&gt; MediaViewer.AuthToken"
+                  moduleName = "MediaViewer"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/eugene/Documents/Development/Personal/MediaViewer/MediaViewer/Services/ApiClient/AuthSession.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "90"
+                  endingLineNumber = "90"
+                  offsetFromSymbolStart = "1276">
+               </Location>
+               <Location
+                  uuid = "C124D3B8-C780-4C17-80A5-6E770D24A1B9 - f43878636abfffe2"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(4) suspend resume partial function for closure #1 @Sendable () async throws -&gt; MediaViewer.AuthToken in MediaViewer.AuthSession.refreshToken() async throws -&gt; MediaViewer.AuthToken"
+                  moduleName = "MediaViewer"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/eugene/Documents/Development/Personal/MediaViewer/MediaViewer/Services/ApiClient/AuthSession.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "90"
+                  endingLineNumber = "90"
+                  offsetFromSymbolStart = "684">
+               </Location>
+               <Location
+                  uuid = "C124D3B8-C780-4C17-80A5-6E770D24A1B9 - f43878636abfffe2"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(4) suspend resume partial function for closure #1 @Sendable () async throws -&gt; MediaViewer.AuthToken in MediaViewer.AuthSession.refreshToken() async throws -&gt; MediaViewer.AuthToken"
+                  moduleName = "MediaViewer"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/eugene/Documents/Development/Personal/MediaViewer/MediaViewer/Services/ApiClient/AuthSession.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "90"
+                  endingLineNumber = "90"
+                  offsetFromSymbolStart = "816">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "F6747654-FF81-42E7-8610-225EE510EDB9"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MediaViewer/Services/ApiClient/AuthSession.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "76"
+            endingLineNumber = "76"
+            landmarkName = "refreshToken()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "F6747654-FF81-42E7-8610-225EE510EDB9 - 7709daeb22d58b7d"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(1) suspend resume partial function for closure #1 @Sendable () async throws -&gt; MediaViewer.AuthToken in MediaViewer.AuthSession.refreshToken() async throws -&gt; MediaViewer.AuthToken"
+                  moduleName = "MediaViewer"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/eugene/Documents/Development/Personal/MediaViewer/MediaViewer/Services/ApiClient/AuthSession.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "78"
+                  endingLineNumber = "78"
+                  offsetFromSymbolStart = "896">
+               </Location>
+               <Location
+                  uuid = "F6747654-FF81-42E7-8610-225EE510EDB9 - 7709daeb22d58b33"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(1) suspend resume partial function for closure #1 @Sendable () async throws -&gt; MediaViewer.AuthToken in MediaViewer.AuthSession.refreshToken() async throws -&gt; MediaViewer.AuthToken"
+                  moduleName = "MediaViewer"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/eugene/Documents/Development/Personal/MediaViewer/MediaViewer/Services/ApiClient/AuthSession.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "76"
+                  endingLineNumber = "76"
+                  offsetFromSymbolStart = "1700">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "D53674A0-2AB9-4731-9B90-7D9D178029C6"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MediaViewer/Services/ApiClient/AuthSession.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "87"
+            endingLineNumber = "87"
+            landmarkName = "refreshToken()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "E32D3715-EE2B-418C-BE81-0579DEABB7D3"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MediaViewer/SharedViews/RemoteImage.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "60"
+            endingLineNumber = "60"
+            landmarkName = "body"
+            landmarkType = "24">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "87D948F9-7E04-4AA6-A351-D0355761AD08"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MediaViewer/Services/Caching/DataCache.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "167"
+            endingLineNumber = "167"
+            landmarkName = "cleanDiskCache()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "87D948F9-7E04-4AA6-A351-D0355761AD08 - c1cb67eed6f355dd"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "MediaViewer.DataCacheImpl.cleanDiskCache() -&gt; ()"
+                  moduleName = "MediaViewer"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/eugene/Documents/Development/Personal/MediaViewer/MediaViewer/Services/Caching/DataCache.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "167"
+                  endingLineNumber = "167"
+                  offsetFromSymbolStart = "312">
+               </Location>
+               <Location
+                  uuid = "87D948F9-7E04-4AA6-A351-D0355761AD08 - 227d89f653d1eeb1"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 @Sendable () -&gt; () in MediaViewer.DataCacheImpl.cleanDiskCache() -&gt; ()"
+                  moduleName = "MediaViewer"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/eugene/Documents/Development/Personal/MediaViewer/MediaViewer/Services/Caching/DataCache.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "167"
+                  endingLineNumber = "167"
+                  offsetFromSymbolStart = "464">
                </Location>
             </Locations>
          </BreakpointContent>

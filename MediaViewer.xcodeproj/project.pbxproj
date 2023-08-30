@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		441855E82A9F740F002FFC47 /* RemoteImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 441855E72A9F740F002FFC47 /* RemoteImage.swift */; };
 		441A29CE2A9CF18800E69ABB /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 441A29CB2A9CF18800E69ABB /* HomeView.swift */; };
 		441A29CF2A9CF18800E69ABB /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 441A29CC2A9CF18800E69ABB /* HomeViewModel.swift */; };
 		441A29D02A9CF18800E69ABB /* HomeFlowCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 441A29CD2A9CF18800E69ABB /* HomeFlowCoordinator.swift */; };
@@ -24,6 +25,9 @@
 		44E0287E2A9F2757004126B6 /* String+md5.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44E0287D2A9F2757004126B6 /* String+md5.swift */; };
 		44E028802A9F4001004126B6 /* Encodable+JsonString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44E0287F2A9F4001004126B6 /* Encodable+JsonString.swift */; };
 		44E028822A9F41DC004126B6 /* ContentClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44E028812A9F41DC004126B6 /* ContentClient.swift */; };
+		44E028872A9F5F58004126B6 /* DetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44E028842A9F5F58004126B6 /* DetailsView.swift */; };
+		44E028882A9F5F58004126B6 /* DetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44E028852A9F5F58004126B6 /* DetailsViewModel.swift */; };
+		44E028892A9F5F58004126B6 /* DetailsFlowCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44E028862A9F5F58004126B6 /* DetailsFlowCoordinator.swift */; };
 		44E5EF382A9BB28C002F096B /* DropBoxOauthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44E5EF362A9BB28C002F096B /* DropBoxOauthViewController.swift */; };
 		44E5EF392A9BB28C002F096B /* DropBoxOauthViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44E5EF372A9BB28C002F096B /* DropBoxOauthViewModel.swift */; };
 		44E5EF3B2A9BB385002F096B /* ErrorPresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44E5EF3A2A9BB385002F096B /* ErrorPresentable.swift */; };
@@ -65,6 +69,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		441855E72A9F740F002FFC47 /* RemoteImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteImage.swift; sourceTree = "<group>"; };
 		441A29CB2A9CF18800E69ABB /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		441A29CC2A9CF18800E69ABB /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		441A29CD2A9CF18800E69ABB /* HomeFlowCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeFlowCoordinator.swift; sourceTree = "<group>"; };
@@ -81,6 +86,9 @@
 		44E0287D2A9F2757004126B6 /* String+md5.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+md5.swift"; sourceTree = "<group>"; };
 		44E0287F2A9F4001004126B6 /* Encodable+JsonString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Encodable+JsonString.swift"; sourceTree = "<group>"; };
 		44E028812A9F41DC004126B6 /* ContentClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentClient.swift; sourceTree = "<group>"; };
+		44E028842A9F5F58004126B6 /* DetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsView.swift; sourceTree = "<group>"; };
+		44E028852A9F5F58004126B6 /* DetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewModel.swift; sourceTree = "<group>"; };
+		44E028862A9F5F58004126B6 /* DetailsFlowCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsFlowCoordinator.swift; sourceTree = "<group>"; };
 		44E5EF362A9BB28C002F096B /* DropBoxOauthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropBoxOauthViewController.swift; sourceTree = "<group>"; };
 		44E5EF372A9BB28C002F096B /* DropBoxOauthViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropBoxOauthViewModel.swift; sourceTree = "<group>"; };
 		44E5EF3A2A9BB385002F096B /* ErrorPresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorPresentable.swift; sourceTree = "<group>"; };
@@ -135,6 +143,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		441855E62A9F73E4002FFC47 /* SharedViews */ = {
+			isa = PBXGroup;
+			children = (
+				441855E72A9F740F002FFC47 /* RemoteImage.swift */,
+			);
+			path = SharedViews;
+			sourceTree = "<group>";
+		};
 		441A29CA2A9CF16F00E69ABB /* Home */ = {
 			isa = PBXGroup;
 			children = (
@@ -164,6 +180,16 @@
 			path = Caching;
 			sourceTree = "<group>";
 		};
+		44E028832A9F5F29004126B6 /* Details */ = {
+			isa = PBXGroup;
+			children = (
+				44E028842A9F5F58004126B6 /* DetailsView.swift */,
+				44E028852A9F5F58004126B6 /* DetailsViewModel.swift */,
+				44E028862A9F5F58004126B6 /* DetailsFlowCoordinator.swift */,
+			);
+			path = Details;
+			sourceTree = "<group>";
+		};
 		44FD4BC42A9B4055002DC476 = {
 			isa = PBXGroup;
 			children = (
@@ -190,6 +216,7 @@
 				44FD4C012A9B4334002DC476 /* AppFlows */,
 				44FD4C132A9B4991002DC476 /* Models */,
 				44FD4C142A9B49A4002DC476 /* Services */,
+				441855E62A9F73E4002FFC47 /* SharedViews */,
 				44FD4C1B2A9B4A71002DC476 /* Helpers */,
 				44FD4BD62A9B4058002DC476 /* MediaViewer.entitlements */,
 				44FD4C052A9B4513002DC476 /* Info.plist */,
@@ -230,6 +257,7 @@
 		44FD4C012A9B4334002DC476 /* AppFlows */ = {
 			isa = PBXGroup;
 			children = (
+				44E028832A9F5F29004126B6 /* Details */,
 				441A29CA2A9CF16F00E69ABB /* Home */,
 				44FD4C062A9B4803002DC476 /* SignIn */,
 				44FD4C022A9B4340002DC476 /* Start */,
@@ -434,12 +462,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				44E028802A9F4001004126B6 /* Encodable+JsonString.swift in Sources */,
+				441855E82A9F740F002FFC47 /* RemoteImage.swift in Sources */,
 				44E5EF392A9BB28C002F096B /* DropBoxOauthViewModel.swift in Sources */,
 				44FD4C1D2A9B4D15002DC476 /* AsyncButton.swift in Sources */,
+				44E028882A9F5F58004126B6 /* DetailsViewModel.swift in Sources */,
 				441A29E12A9DFF3F00E69ABB /* HTTPClient.swift in Sources */,
 				44FD4C182A9B4A3E002DC476 /* SignInView.swift in Sources */,
 				441A29D02A9CF18800E69ABB /* HomeFlowCoordinator.swift in Sources */,
 				441A29CF2A9CF18800E69ABB /* HomeViewModel.swift in Sources */,
+				44E028872A9F5F58004126B6 /* DetailsView.swift in Sources */,
 				441A29CE2A9CF18800E69ABB /* HomeView.swift in Sources */,
 				441A29D52A9CF7D600E69ABB /* Isolated.swift in Sources */,
 				441A29D72A9CFD2900E69ABB /* ErrorViewModifier.swift in Sources */,
@@ -460,6 +491,7 @@
 				44FD4C232A9B5C6E002DC476 /* FileEntryRepository.swift in Sources */,
 				44FD4C042A9B434F002DC476 /* StartFlowCoordinator.swift in Sources */,
 				44FD4BFE2A9B424E002DC476 /* SceneDelegate.swift in Sources */,
+				44E028892A9F5F58004126B6 /* DetailsFlowCoordinator.swift in Sources */,
 				44FD4C002A9B427A002DC476 /* ApplicationController.swift in Sources */,
 				441A29D92A9DFAB100E69ABB /* ApiClient.swift in Sources */,
 				441A29DD2A9DFBC400E69ABB /* AuthToken.swift in Sources */,

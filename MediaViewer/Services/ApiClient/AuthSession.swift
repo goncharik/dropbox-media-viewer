@@ -6,13 +6,6 @@ enum AuthError: Error {
 }
 
 actor AuthSession {
-    private struct RefreshTokenRequest: Encodable {
-        var grantType: String = "refresh_token"
-        var refreshToken: String
-        var clientId: String
-        var clientSecret: String
-    }
-
     private nonisolated let currentToken: Isolated<AuthToken?>
 
     private var refreshTask: Task<AuthToken, Error>?
@@ -69,14 +62,18 @@ actor AuthSession {
             var request = URLRequest(url: tokenURL)
             request.httpMethod = "POST"
 
-            let body = RefreshTokenRequest(
-                refreshToken: refreshToken,
-                clientId: appEnv.clientId,
-                clientSecret: appEnv.clientSecret
-            )
-
-            request.httpBody = try? JSONEncoder.default.encode(body)
-            request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+            let bodyParameters = [
+                "grant_type": "refresh_token",
+                "refresh_token": refreshToken,
+                "client_id": appEnv.clientId,
+                "client_secret": appEnv.clientSecret,
+            ]
+            request.httpBody = bodyParameters
+                .map { "\($0.key)=\($0.value)" }
+                .joined(separator: "&")
+                .data(using: .utf8)
+            
+            request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
 
             do {
                 var newToken: AuthToken = try await httpClient.model(for: request)
@@ -89,6 +86,7 @@ actor AuthSession {
                 currentToken.value = newToken
                 return newToken
             } catch {
+                print("Failed to refresh token: \(error)")
                 throw AuthError.invalidToken
             }
         }

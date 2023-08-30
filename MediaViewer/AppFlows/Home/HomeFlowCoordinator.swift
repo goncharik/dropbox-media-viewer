@@ -8,6 +8,7 @@ public final class HomeFlowCoordinator {
     
     @Dependency(\.authClient) var authClient
     @Dependency(\.fileEntryRepo) var fileEntryRepo
+    @Dependency(\.contentClient) var contentClient
 
     public init(with navigation: UINavigationController) {
         self.navigation = navigation        
@@ -18,7 +19,8 @@ public final class HomeFlowCoordinator {
         let viewModel = HomeViewModel(
             dependencies: .init(
                 authClient: authClient,
-                fileEntryRepo: fileEntryRepo
+                fileEntryRepo: fileEntryRepo,
+                contentClient: contentClient
             ),
             navHandler: navigate
         )
@@ -36,7 +38,7 @@ public final class HomeFlowCoordinator {
         case .logout:
             StartFlowCoordinator(with: navigation).start()
         case let .openFile(file):
-            () // TODO: show details
+            DetailsFlowCoordinator(with: navigation).start(file)        
         }
     }
 }

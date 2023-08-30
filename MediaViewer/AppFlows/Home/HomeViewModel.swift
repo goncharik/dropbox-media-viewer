@@ -1,5 +1,5 @@
 import Combine
-import Foundation
+import UIKit
 import IdentifiedCollections
 
 @MainActor
@@ -12,6 +12,7 @@ final class HomeViewModel: ObservableObject {
     struct Dependencies {
         var authClient: AuthClient
         var fileEntryRepo: FileEntryRepository
+        var contentClient: ContentClient
     }
 
     private let dependencies: Dependencies
@@ -19,9 +20,7 @@ final class HomeViewModel: ObservableObject {
 
     @Published private(set) var isRefreshing = false
     @Published private(set) var isLoadingMore = false
-    @Published private(set) var items: IdentifiedArrayOf<FileEntry> = [
-        .stub,
-    ]
+    @Published private(set) var items: IdentifiedArrayOf<FileEntry> = []
 
     @Published var error: Error?
 
@@ -35,33 +34,6 @@ final class HomeViewModel: ObservableObject {
         dependencies.fileEntryRepo.filesPublisher
             .receive(on: DispatchQueue.main)
             .assign(to: &$items)
-
-//        Task {
-//            do {
-//                let string = try ThumbnailRequest(path: fileMock).toJsonString()
-//                print("json string:", string)
-//
-//                let data = try await fetchThumbnailForFile(path: fileMock)
-//                print("got image thumb")
-//                let image = UIImage(data: data)
-//                print(image)
-//            } catch {
-//                print("Thumbnail Fetch Error: \(error)")
-//            }
-//        }
-//        let authSeesion = AuthSession(appEnv: .live, tokenStorage: KeychainTokenStorage(), httpClient: HTTPClientKey.liveValue)
-//        fetchThumbnailForFile(file: fileMock, accessToken: authSeesion.accessToken()) { data, error in
-//            if let error = error {
-//                print("Thumbnail Fetch Error: \(error)")
-//                return
-//            }
-//
-//            if let thumbnailData = data {
-//                print("got image thumb")
-//                let image = UIImage(data: thumbnailData)
-//                print(image)
-//            }
-//        }
     }
 
     func load() async {
@@ -75,7 +47,7 @@ final class HomeViewModel: ObservableObject {
         }
     }
 
-    func loadMoreIfNeeded(_ item: FileEntry) async {
+    func loadMoreIfNeeded(for item: FileEntry) async {
         guard items.last?.id == item.id else { return }
 
         isLoadingMore = true
@@ -96,38 +68,15 @@ final class HomeViewModel: ObservableObject {
         await dependencies.authClient.logout()
         navHandler(.logout)
     }
-}
 
-// TODO: Remove after tests
+    func clearCaches() {
+        dependencies.contentClient.clearCaches()
+    
+    }
 
-struct ThumbnailRequest: Encodable {
-    var format: String = "jpeg"
-    var mode: String = "fitone_bestfit"
-    var quality: String = "quality_80"
-    var resource: Resource
-    var size: String = "w64h64"
-
-    struct Resource: Encodable {
-        enum CodingKeys: String, CodingKey {
-            case tag = ".tag"
-            case path
+    func thumbnailProvider(_ item: FileEntry) -> () async throws -> UIImage? {
+        return { [weak self] in
+            try await self?.dependencies.contentClient.thumbnail(for: item)
         }
-
-        var tag: String = "path"
-        var path: String
-    }
-
-    init(path: String) {
-        resource = Resource(path: path)
     }
 }
-
-let fileMock = "/photos/me_art.png"
-func fetchThumbnailForFile(path: String) async throws -> Data {
-    let appEnv = AppEnv.live
-    let apiClient: ApiClient = ApiClientKey.liveValue
-
-    let thumbnailApiPath = "/2/files/get_thumbnail_v2"
-    return try await apiClient.content(path: thumbnailApiPath, body: ThumbnailRequest(path: path))
-}
-

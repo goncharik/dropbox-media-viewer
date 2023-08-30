@@ -17,6 +17,7 @@ protocol ApiClient {
     func get<A: Decodable>(path: String, params: [String: Any]) async throws -> A
     func post<A: Decodable, B: Encodable>(path: String, body: B?) async throws -> A
     func content<B: Encodable>(path: String, body: B?) async throws -> Data
+    func contentDownload<B: Encodable>(path: String, body: B?, storeUrl: @escaping (URL) -> URL?) async throws -> URL?
 }
 
 final class ApiClientImpl: ApiClient {
@@ -75,14 +76,18 @@ final class ApiClientImpl: ApiClient {
         return try await runAuthorized(request)
     }
 
-    func contentDownload<B: Encodable>(path: String, body: B?, id: String, cache: DataCache) async throws -> URL? {
+    func contentDownload<B: Encodable>(path: String, body: B?, storeUrl: @escaping (URL) -> URL?) async throws -> URL? {
         let url = URL(string: "\(appEnv.contentUrl)\(path)")!
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
+        
+        let token = try await authSession.validToken()
+        request.setValue("Bearer \(token.accessToken)", forHTTPHeaderField: "Authorization")
 
         let file = try body?.toJsonString() ?? "{}"
         request.addValue(file, forHTTPHeaderField: "Dropbox-API-Arg")
 
+        print("Request:", request.debugDescription)
         return try await withCheckedThrowingContinuation { continuation in
             let task = httpClient.downloadTask(with: request) { url, response, error in
                 if let error = error {
@@ -105,8 +110,7 @@ final class ApiClientImpl: ApiClient {
                     return
                 }
 
-                cache.store(url: url, for: id)
-                let cachedUrl = cache.cachedUrl(for: id)
+                let cachedUrl = storeUrl(url)
 
                 continuation.resume(returning: cachedUrl)
             }

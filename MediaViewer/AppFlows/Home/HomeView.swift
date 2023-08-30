@@ -10,11 +10,17 @@ struct HomeView: View {
                     Button {
                         viewModel.itemSelected(item)
                     } label: {
-                        FileRow(fileEntity: item)
+                        FileRow(
+                            fileEntity: item,
+                            imageProvider: viewModel.thumbnailProvider(item)
+                        )
                             .frame(maxWidth: .infinity)
                             .background()
                     }
                     .buttonStyle(PlainButtonStyle())
+                    .task {
+                        await viewModel.loadMoreIfNeeded(for: item)
+                    }
                 }
                 if viewModel.isLoadingMore {
                     ProgressView()
@@ -49,6 +55,12 @@ struct HomeView: View {
                     Text("Logout")
                 }
             }
+
+            ToolbarItem(placement: .navigationBarTrailing) {
+                Button("Clear Cache") {
+                    viewModel.clearCaches()
+                }
+            }
         }
         .task {
             await viewModel.load()
@@ -57,66 +69,13 @@ struct HomeView: View {
     }
 }
 
-struct ThumbnailImage: View {
-    @MainActor
-    class ThumbnailImageModel: ObservableObject {
-        @Dependency(\.contentClient) var contentClient
-
-        @Published var image: UIImage?
-        @Published var isLoading = false
-
-        private let file: FileEntry
-
-        init(file: FileEntry) {
-            self.file = file
-        }
-
-        func load() async {
-            defer { isLoading = false }
-            isLoading = true
-
-            do {
-                image = try await contentClient.thumbnail(for: file)
-            } catch {
-                print(error)
-            }
-        }
-    }
-
-    @ObservedObject var model: ThumbnailImageModel
-
-    init(file: FileEntry) {
-        model = .init(file: file)
-    }
-
-    var body: some View {
-        ZStack {
-            if let image = model.image {
-                Image(uiImage: image)
-                    .resizable()
-                    .scaledToFill()
-            } else {
-                Image(systemName: "photo")
-                    .resizable()
-                    .scaledToFit()
-            }
-            if model.isLoading {
-                ProgressView()
-                    .tint(Color.accentColor)
-            }
-        }
-        .task {
-            await model.load()
-        }
-    }
-}
-
 struct FileRow: View {
     let fileEntity: FileEntry
+    let imageProvider: () async throws -> UIImage?
 
     var body: some View {
         HStack {
-            ThumbnailImage(file: fileEntity)
+            RemoteImage(imageProvider: imageProvider)
                 .frame(width: 64, height: 64)
                 .clipShape(RoundedRectangle(cornerRadius: 8))
 
@@ -143,12 +102,14 @@ import Dependencies
 #Preview {
     @Dependency(\.authClient) var authClient
     @Dependency(\.fileEntryRepo) var fileEntryRepo
+    @Dependency(\.contentClient) var contentClient
     return NavigationStack {
         HomeView(
             viewModel: HomeViewModel(
                 dependencies: .init(
                     authClient: authClient,
-                    fileEntryRepo: fileEntryRepo
+                    fileEntryRepo: fileEntryRepo,
+                    contentClient: contentClient
                 ),
                 navHandler: { _ in }
             )
