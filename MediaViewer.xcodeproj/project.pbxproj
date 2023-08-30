@@ -22,6 +22,8 @@
 		441A29E62A9F010400E69ABB /* FileEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 441A29E52A9F010400E69ABB /* FileEntry.swift */; };
 		44E0287B2A9F25C1004126B6 /* DataCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44E0287A2A9F25C1004126B6 /* DataCache.swift */; };
 		44E0287E2A9F2757004126B6 /* String+md5.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44E0287D2A9F2757004126B6 /* String+md5.swift */; };
+		44E028802A9F4001004126B6 /* Encodable+JsonString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44E0287F2A9F4001004126B6 /* Encodable+JsonString.swift */; };
+		44E028822A9F41DC004126B6 /* ContentClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44E028812A9F41DC004126B6 /* ContentClient.swift */; };
 		44E5EF382A9BB28C002F096B /* DropBoxOauthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44E5EF362A9BB28C002F096B /* DropBoxOauthViewController.swift */; };
 		44E5EF392A9BB28C002F096B /* DropBoxOauthViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44E5EF372A9BB28C002F096B /* DropBoxOauthViewModel.swift */; };
 		44E5EF3B2A9BB385002F096B /* ErrorPresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44E5EF3A2A9BB385002F096B /* ErrorPresentable.swift */; };
@@ -77,6 +79,8 @@
 		441A29E52A9F010400E69ABB /* FileEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileEntry.swift; sourceTree = "<group>"; };
 		44E0287A2A9F25C1004126B6 /* DataCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataCache.swift; sourceTree = "<group>"; };
 		44E0287D2A9F2757004126B6 /* String+md5.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+md5.swift"; sourceTree = "<group>"; };
+		44E0287F2A9F4001004126B6 /* Encodable+JsonString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Encodable+JsonString.swift"; sourceTree = "<group>"; };
+		44E028812A9F41DC004126B6 /* ContentClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentClient.swift; sourceTree = "<group>"; };
 		44E5EF362A9BB28C002F096B /* DropBoxOauthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropBoxOauthViewController.swift; sourceTree = "<group>"; };
 		44E5EF372A9BB28C002F096B /* DropBoxOauthViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropBoxOauthViewModel.swift; sourceTree = "<group>"; };
 		44E5EF3A2A9BB385002F096B /* ErrorPresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorPresentable.swift; sourceTree = "<group>"; };
@@ -271,6 +275,7 @@
 				44FD4C202A9B5C40002DC476 /* AuthClient.swift */,
 				44FD4C222A9B5C6E002DC476 /* FileEntryRepository.swift */,
 				441A29DA2A9DFB8900E69ABB /* TokenStorage.swift */,
+				44E028812A9F41DC004126B6 /* ContentClient.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -283,6 +288,7 @@
 				441A29D62A9CFD2900E69ABB /* ErrorViewModifier.swift */,
 				441A29D42A9CF7D600E69ABB /* Isolated.swift */,
 				441A29DE2A9DFBF100E69ABB /* JSONCoders.swift */,
+				44E0287F2A9F4001004126B6 /* Encodable+JsonString.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -427,6 +433,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				44E028802A9F4001004126B6 /* Encodable+JsonString.swift in Sources */,
 				44E5EF392A9BB28C002F096B /* DropBoxOauthViewModel.swift in Sources */,
 				44FD4C1D2A9B4D15002DC476 /* AsyncButton.swift in Sources */,
 				441A29E12A9DFF3F00E69ABB /* HTTPClient.swift in Sources */,
@@ -440,6 +447,7 @@
 				44FD4C1F2A9B5BF6002DC476 /* AppEnv.swift in Sources */,
 				441A29DB2A9DFB8900E69ABB /* TokenStorage.swift in Sources */,
 				441A29E32A9DFFE000E69ABB /* AuthSession.swift in Sources */,
+				44E028822A9F41DC004126B6 /* ContentClient.swift in Sources */,
 				44FD4C1A2A9B4A3E002DC476 /* SignInFlowCoordinator.swift in Sources */,
 				441A29DF2A9DFBF100E69ABB /* JSONCoders.swift in Sources */,
 				44E0287E2A9F2757004126B6 /* String+md5.swift in Sources */,

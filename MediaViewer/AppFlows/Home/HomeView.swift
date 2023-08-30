@@ -57,14 +57,66 @@ struct HomeView: View {
     }
 }
 
+struct ThumbnailImage: View {
+    @MainActor
+    class ThumbnailImageModel: ObservableObject {
+        @Dependency(\.contentClient) var contentClient
+
+        @Published var image: UIImage?
+        @Published var isLoading = false
+
+        private let file: FileEntry
+
+        init(file: FileEntry) {
+            self.file = file
+        }
+
+        func load() async {
+            defer { isLoading = false }
+            isLoading = true
+
+            do {
+                image = try await contentClient.thumbnail(for: file)
+            } catch {
+                print(error)
+            }
+        }
+    }
+
+    @ObservedObject var model: ThumbnailImageModel
+
+    init(file: FileEntry) {
+        model = .init(file: file)
+    }
+
+    var body: some View {
+        ZStack {
+            if let image = model.image {
+                Image(uiImage: image)
+                    .resizable()
+                    .scaledToFill()
+            } else {
+                Image(systemName: "photo")
+                    .resizable()
+                    .scaledToFit()
+            }
+            if model.isLoading {
+                ProgressView()
+                    .tint(Color.accentColor)
+            }
+        }
+        .task {
+            await model.load()
+        }
+    }
+}
+
 struct FileRow: View {
     let fileEntity: FileEntry
 
     var body: some View {
         HStack {
-            Image(systemName: "photo")
-                .resizable()
-                .scaledToFit()
+            ThumbnailImage(file: fileEntity)
                 .frame(width: 64, height: 64)
                 .clipShape(RoundedRectangle(cornerRadius: 8))
 
@@ -83,6 +135,7 @@ struct FileRow: View {
         }
     }
 }
+
 // MARK: - Preview
 
 import Dependencies

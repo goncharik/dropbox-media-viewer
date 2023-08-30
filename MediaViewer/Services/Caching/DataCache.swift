@@ -2,6 +2,8 @@ import Dependencies
 import UIKit
 
 protocol DataCache {
+    func store(url: URL, for key: String)
+    func cachedUrl(for key: String) -> URL?
     func write(data: Data, for key: String)
     func readData(for key: String) -> Data?
     func hasData(for key: String) -> Bool
@@ -45,6 +47,24 @@ final class DataCacheImpl: DataCache {
 
     // MARK: - Write data
 
+    func store(url: URL, for key: String) {
+        if fileManager.fileExists(atPath: cachePath) == false {
+            do {
+                try fileManager.createDirectory(atPath: cachePath, withIntermediateDirectories: true, attributes: nil)
+            } catch {
+                print("DataCache: Error while creating cache folder: \(error.localizedDescription)")
+                return
+            }
+        }
+
+        do {
+            let destinationPath = cachePath(forKey: key)
+            try fileManager.moveItem(atPath: url.path, toPath: destinationPath)
+        } catch {
+            print("DataCache: Error while moving file from url to cache folder: \(error.localizedDescription)")
+        }
+    }
+
     func write(data: Data, for key: String) {
         memCache.setObject(data as AnyObject, forKey: key as AnyObject)
         writeDataToDisk(data: data, key: key)
@@ -65,6 +85,15 @@ final class DataCacheImpl: DataCache {
     }
 
     // MARK: - Read data
+
+    func cachedUrl(for key: String) -> URL? {
+        let path = cachePath(forKey: key)
+        if fileManager.fileExists(atPath: path) {
+            return NSURL.fileURL(withPath: path)
+        } else {
+            return nil
+        }
+    }
 
     func readData(for key: String) -> Data? {
         var data = memCache.object(forKey: key as AnyObject) as? Data

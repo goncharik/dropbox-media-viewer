@@ -2,9 +2,8 @@ import Combine
 import Foundation
 import IdentifiedCollections
 
-import UIKit
 @MainActor
-final class HomeViewModel: ObservableObject  {
+final class HomeViewModel: ObservableObject {
     enum NavigationEvents {
         case logout
         case openFile(FileEntry)
@@ -24,18 +23,32 @@ final class HomeViewModel: ObservableObject  {
         .stub,
     ]
 
-    @Published var error: Error?    
+    @Published var error: Error?
 
     init(
-        dependencies: Dependencies, 
+        dependencies: Dependencies,
         navHandler: @escaping @MainActor (NavigationEvents) -> Void
     ) {
         self.dependencies = dependencies
         self.navHandler = navHandler
 
         dependencies.fileEntryRepo.filesPublisher
+            .receive(on: DispatchQueue.main)
             .assign(to: &$items)
 
+//        Task {
+//            do {
+//                let string = try ThumbnailRequest(path: fileMock).toJsonString()
+//                print("json string:", string)
+//
+//                let data = try await fetchThumbnailForFile(path: fileMock)
+//                print("got image thumb")
+//                let image = UIImage(data: data)
+//                print(image)
+//            } catch {
+//                print("Thumbnail Fetch Error: \(error)")
+//            }
+//        }
 //        let authSeesion = AuthSession(appEnv: .live, tokenStorage: KeychainTokenStorage(), httpClient: HTTPClientKey.liveValue)
 //        fetchThumbnailForFile(file: fileMock, accessToken: authSeesion.accessToken()) { data, error in
 //            if let error = error {
@@ -67,7 +80,7 @@ final class HomeViewModel: ObservableObject  {
 
         isLoadingMore = true
         defer { isLoadingMore = false }
-        
+
         do {
             try await dependencies.fileEntryRepo.loadMoreIfNeeded()
         } catch {
@@ -87,32 +100,34 @@ final class HomeViewModel: ObservableObject  {
 
 // TODO: Remove after tests
 
-let fileMock = """
-{"format": "jpeg","mode": "fitone_bestfit","quality": "quality_80","resource": {".tag": "path","path": "/photos/me_art.png"},"size": "w64h64"}
-"""
-func fetchThumbnailForFile(file: String, accessToken: String, completion: @escaping (Data?, Error?) -> Void) {
-    let thumbnailURLString = "https://content.dropboxapi.com/2/files/get_thumbnail_v2"
-    let thumbnailURL = URL(string: thumbnailURLString)!
+struct ThumbnailRequest: Encodable {
+    var format: String = "jpeg"
+    var mode: String = "fitone_bestfit"
+    var quality: String = "quality_80"
+    var resource: Resource
+    var size: String = "w64h64"
 
-    var request = URLRequest(url: thumbnailURL)
-    request.httpMethod = "GET"
-
-    request.addValue("Bearer \(accessToken)", forHTTPHeaderField: "Authorization")
-    request.addValue(file, forHTTPHeaderField: "Dropbox-API-Arg")
-
-    URLSession.shared.dataTask(with: request) { data, response, error in
-        if let error = error {
-            completion(nil, error)
-            return
+    struct Resource: Encodable {
+        enum CodingKeys: String, CodingKey {
+            case tag = ".tag"
+            case path
         }
 
-        if let data = data {
-            completion(data, nil)
-        } else {
-            completion(nil, NSError(domain: "EmptyResponse", code: -1, userInfo: nil))
-        }
-    }.resume()
+        var tag: String = "path"
+        var path: String
+    }
+
+    init(path: String) {
+        resource = Resource(path: path)
+    }
 }
 
+let fileMock = "/photos/me_art.png"
+func fetchThumbnailForFile(path: String) async throws -> Data {
+    let appEnv = AppEnv.live
+    let apiClient: ApiClient = ApiClientKey.liveValue
 
+    let thumbnailApiPath = "/2/files/get_thumbnail_v2"
+    return try await apiClient.content(path: thumbnailApiPath, body: ThumbnailRequest(path: path))
+}
 

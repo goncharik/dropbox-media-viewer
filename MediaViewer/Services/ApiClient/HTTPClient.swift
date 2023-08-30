@@ -3,6 +3,7 @@ import Foundation
 
 protocol HTTPClient {
     func data(for: URLRequest) async throws -> (Data, URLResponse)
+    func downloadTask(with request: URLRequest, completionHandler: @escaping @Sendable (URL?, URLResponse?, Error?) -> Void) -> URLSessionDownloadTask
 }
 
 extension URLSession: HTTPClient {}

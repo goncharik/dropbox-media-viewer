@@ -4,6 +4,10 @@ import Foundation
 struct ApiError: Error, Decodable {
     let error: String
     let errorDescription: String
+
+    static var invalidResponse: Self {
+        .init(error: "invalid_response", errorDescription: "Invalid response")
+    }
 }
 
 protocol ApiClient {
@@ -12,6 +16,7 @@ protocol ApiClient {
     func logout() async
     func get<A: Decodable>(path: String, params: [String: Any]) async throws -> A
     func post<A: Decodable, B: Encodable>(path: String, body: B?) async throws -> A
+    func content<B: Encodable>(path: String, body: B?) async throws -> Data
 }
 
 final class ApiClientImpl: ApiClient {
@@ -44,7 +49,8 @@ final class ApiClientImpl: ApiClient {
         var request = URLRequest(url: components.url!)
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
 
-        return try await runAuthorized(request)
+        let data = try await runAuthorized(request)
+        return try apiDecode(from: data)
     }
 
     func post<A: Decodable>(path: String, body: (some Encodable)?) async throws -> A {
@@ -54,15 +60,67 @@ final class ApiClientImpl: ApiClient {
         request.httpBody = try JSONEncoder.default.encode(body)
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
 
+        let data = try await runAuthorized(request)
+        return try apiDecode(from: data)
+    }
+
+    func content<B: Encodable>(path: String, body: B?) async throws -> Data {
+        let url = URL(string: "\(appEnv.contentUrl)\(path)")!
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+
+        let file = try body?.toJsonString() ?? "{}"
+        request.addValue(file, forHTTPHeaderField: "Dropbox-API-Arg")
+
         return try await runAuthorized(request)
+    }
+
+    func contentDownload<B: Encodable>(path: String, body: B?, id: String, cache: DataCache) async throws -> URL? {
+        let url = URL(string: "\(appEnv.contentUrl)\(path)")!
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+
+        let file = try body?.toJsonString() ?? "{}"
+        request.addValue(file, forHTTPHeaderField: "Dropbox-API-Arg")
+
+        return try await withCheckedThrowingContinuation { continuation in
+            let task = httpClient.downloadTask(with: request) { url, response, error in
+                if let error = error {
+                    continuation.resume(throwing: error)
+                    return
+                }
+
+                guard let httpResponse = response as? HTTPURLResponse else {
+                    continuation.resume(throwing: ApiError.invalidResponse)
+                    return
+                }
+
+                guard httpResponse.statusCode == 200 else {
+                    continuation.resume(throwing: ApiError.invalidResponse)
+                    return
+                }
+
+                guard let url = url else {
+                    continuation.resume(throwing: ApiError.invalidResponse)
+                    return
+                }
+
+                cache.store(url: url, for: id)
+                let cachedUrl = cache.cachedUrl(for: id)
+
+                continuation.resume(returning: cachedUrl)
+            }
+            task.resume()
+        }
     }
 
     // MARK: - Private helpers
 
-    private func runAuthorized<A: Decodable>(_ request: URLRequest, allowRetry: Bool = true) async throws -> A {
+    private func runAuthorized(_ request: URLRequest, allowRetry: Bool = true) async throws -> Data {
         var request = request
         let token = try await authSession.validToken()
         request.setValue("Bearer \(token.accessToken)", forHTTPHeaderField: "Authorization")
+        print("Request:", request.debugDescription)
         let (data, urlResponse) = try await httpClient.data(for: request)
 
         // check the http status code and refresh + retry if we received 401 Unauthorized
@@ -74,7 +132,7 @@ final class ApiClientImpl: ApiClient {
 
             throw AuthError.invalidToken
         }
-        return try apiDecode(from: data)
+        return data
     }
 }
 
