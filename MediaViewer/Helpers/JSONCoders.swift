@@ -3,7 +3,7 @@ import Foundation
 extension JSONEncoder {
     static let `default`: JSONEncoder = {
         let encoder = JSONEncoder()
-        encoder.dateEncodingStrategy = .secondsSince1970
+        encoder.dateEncodingStrategy = .iso8601
         encoder.keyEncodingStrategy = .convertToSnakeCase
         return encoder
     }()
@@ -12,7 +12,7 @@ extension JSONEncoder {
 extension JSONDecoder {
     static let `default`: JSONDecoder = {
         let decoder = JSONDecoder()
-        decoder.dateDecodingStrategy = .secondsSince1970
+        decoder.dateDecodingStrategy = .iso8601
         decoder.keyDecodingStrategy = .convertFromSnakeCase
         return decoder
     }()

@@ -84,5 +84,101 @@
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "3DABE958-5242-4FA8-938D-8CA00492B7FC"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MediaViewer/AppFlows/Home/HomeViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "40"
+            endingLineNumber = "40"
+            landmarkName = "init(dependencies:navHandler:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "3DABE958-5242-4FA8-938D-8CA00492B7FC - 2ac955f69bada2b6"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "MediaViewer.HomeViewModel.init(dependencies: MediaViewer.HomeViewModel.Dependencies, navHandler: @Swift.MainActor (MediaViewer.HomeViewModel.NavigationEvents) -&gt; ()) -&gt; MediaViewer.HomeViewModel"
+                  moduleName = "MediaViewer"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/eugene/Documents/Development/Personal/MediaViewer/MediaViewer/AppFlows/Home/HomeViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "37"
+                  endingLineNumber = "37"
+                  offsetFromSymbolStart = "1100">
+               </Location>
+               <Location
+                  uuid = "3DABE958-5242-4FA8-938D-8CA00492B7FC - 2ac955f69bada295"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "MediaViewer.HomeViewModel.init(dependencies: MediaViewer.HomeViewModel.Dependencies, navHandler: @Swift.MainActor (MediaViewer.HomeViewModel.NavigationEvents) -&gt; ()) -&gt; MediaViewer.HomeViewModel"
+                  moduleName = "MediaViewer"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/eugene/Documents/Development/Personal/MediaViewer/MediaViewer/AppFlows/Home/HomeViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "36"
+                  endingLineNumber = "36"
+                  offsetFromSymbolStart = "740">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "808ED6F6-B26B-4ADF-9DAF-68C4C31A160A"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MediaViewer/AppFlows/Home/HomeViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "52"
+            endingLineNumber = "52"
+            landmarkName = "init(dependencies:navHandler:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "808ED6F6-B26B-4ADF-9DAF-68C4C31A160A - a8d2ce5f87d5840f"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(1) suspend resume partial function for MediaViewer.HomeViewModel.load() async -&gt; ()"
+                  moduleName = "MediaViewer"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/eugene/Documents/Development/Personal/MediaViewer/MediaViewer/AppFlows/Home/HomeViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "50"
+                  endingLineNumber = "50"
+                  offsetFromSymbolStart = "104">
+               </Location>
+               <Location
+                  uuid = "808ED6F6-B26B-4ADF-9DAF-68C4C31A160A - 912083e1483da8fe"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Optional&lt;Foundation.Data&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in MediaViewer.HomeViewModel.init(dependencies: MediaViewer.HomeViewModel.Dependencies, navHandler: @Swift.MainActor (MediaViewer.HomeViewModel.NavigationEvents) -&gt; ()) -&gt; MediaViewer.HomeViewModel"
+                  moduleName = "MediaViewer"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/eugene/Documents/Development/Personal/MediaViewer/MediaViewer/AppFlows/Home/HomeViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "48"
+                  endingLineNumber = "48"
+                  offsetFromSymbolStart = "908">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
    </Breakpoints>
 </Bucket>

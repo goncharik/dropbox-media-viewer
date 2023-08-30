@@ -31,6 +31,11 @@ actor AuthSession {
         })
     }
 
+    // TODO: remove after testing
+    nonisolated func accessToken() -> String {
+        currentToken.value!.accessToken
+    }
+
     nonisolated func isAuthorized() -> Bool {
         currentToken.value != nil
     }

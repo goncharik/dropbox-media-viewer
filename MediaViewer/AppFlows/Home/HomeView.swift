@@ -9,7 +9,9 @@ struct HomeView: View {
                 Button {
                     viewModel.itemSelected(item)
                 } label: {
-                    Text("Hello, World!")
+                    FileRow()
+                        .frame(maxWidth: .infinity)
+                        .background()
                 }
                 .buttonStyle(PlainButtonStyle())
             }
@@ -27,17 +29,41 @@ struct HomeView: View {
     }
 }
 
+struct FileRow: View {
+    var body: some View {
+        HStack {
+            Image(systemName: "photo")
+                .resizable()
+                .scaledToFit()
+                .frame(width: 64, height: 64)
+                .clipShape(RoundedRectangle(cornerRadius: 8))
+
+            VStack(alignment: .leading) {
+                Text("Hello, World!")
+                    .font(.headline)
+
+                Text("Subtitle")
+                    .font(.subheadline)
+            }
+
+            Spacer()
+        }
+    }
+}
 // MARK: - Preview
 
 import Dependencies
+@available(iOS 16.0, *)
 #Preview {
     @Dependency(\.authClient) var authClient
-    return HomeView(
-        viewModel: HomeViewModel(
-            dependencies: .init(
-                authClient: authClient            
-            ),
-            navHandler: { _ in }
+    return NavigationStack {
+        HomeView(
+            viewModel: HomeViewModel(
+                dependencies: .init(
+                    authClient: authClient
+                ),
+                navHandler: { _ in }
+            )
         )
-    )
+    }
 }
