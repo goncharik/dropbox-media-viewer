@@ -1,6 +1,6 @@
 # MediaViewer
 
-This repo contains the full source code for MediaView, an iOS app that uses raw DropBox API to login an view media files from shared app folder. 
+This repo contains the full source code for MediaView, an iOS app that uses raw DropBox API to login and view media files from shared app folder. 
 
 ---
 
@@ -24,7 +24,7 @@ Before using this SDK, you should register your application in the [Dropbox App 
 
 ### Configure App Enviroment with your dropbox Client ID and Client Secret 
 
-Go to MediaView/Service/AppEnv.swift and replace 
+Go to `MediaView/Services/AppEnv.swift` and replace 
 
 ```swift
 "empty-client-id"
@@ -34,6 +34,12 @@ Go to MediaView/Service/AppEnv.swift and replace
 with your values. 
 
 You may also update `defaultRedirectUri` to what you prefer.
+
+# Architecture
+
+Main architecture patter of the app is MVVM+Coordinators. Navigation stack is used from `UIKit` but most of the screens are done via `SwiftUI`. Such architecture is quite flexible and allows to write logic code in full separation from UI implementation.
+
+Services have 2 layers. Low layer services (like `ApiClient`, `DataCache`) are used by more higher layer services (like `AuthClinet`, `FileEntityRepository`, `ContentClient`), and those are used by ViewModels.
 
 # Dependencies
 
