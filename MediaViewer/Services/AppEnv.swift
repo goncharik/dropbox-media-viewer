@@ -5,6 +5,7 @@ struct AppEnv {
     var clientSecret: String
     var baseUrl: String
     var oauthUrl: String
+    var contentUrl: String
     var defaultRedirectUri: String
 }
 
@@ -17,6 +18,7 @@ extension AppEnv {
             clientSecret: "empty-client-secret",
             baseUrl: "https://api.dropboxapi.com",
             oauthUrl: "https://www.dropbox.com/oauth2/authorize",
+            contentUrl: "https://content.dropboxapi.com",
             defaultRedirectUri: "https://me.honcharenko.mediaviewer/auth"
         )
     }
