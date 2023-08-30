@@ -6,7 +6,6 @@ import Dependencies
 public final class SignInFlowCoordinator {
     private let navigation: UINavigationController
     
-    @Dependency(\.openURL) var openURL
     @Dependency(\.authClient) var authClient
     
     public init(with navigation: UINavigationController) {
@@ -16,6 +15,7 @@ public final class SignInFlowCoordinator {
     /// Entry point to the flow
     public func start() {
         let viewModel = SignInViewModel(
+            dependencies: .init(authClient: authClient),
             navHandler: navigate
         )
         let view = UIHostingController(

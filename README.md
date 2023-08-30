@@ -6,8 +6,8 @@ This repo contains the full source code for MediaView, an iOS app that uses raw 
 
 * [Requirements](#requirements)
 * [Getting Started](#getting-started)
-* [Learn More](#learn-more)
-* [Related Projects](#related-projects)
+* [Architecture](#architecture)
+* [Dependencies](#dependencies)
 * [License](#license)
 
 # Requirements

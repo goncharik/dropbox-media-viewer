@@ -8,15 +8,20 @@ public struct ErrorAlertModifier: ViewModifier {
     }
 
     public func body(content: Content) -> some View {
-        content
+        var message = error?.localizedDescription ?? ""
+        if let error = error as? ApiError {
+            message = error.errorDescription
+        }
+
+        return content
             .alert("Error", isPresented: Binding(
                 get: { error != nil },
                 set: { _ in error = nil }
             )) {
                 Button("OK", role: .cancel) {}
             } message: {
-                Text(error?.localizedDescription ?? "")
-            }    
+                Text(message)
+            }
     }
 }
 

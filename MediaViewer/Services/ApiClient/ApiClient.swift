@@ -8,6 +8,10 @@ struct ApiError: Error, Decodable {
     static var invalidResponse: Self {
         .init(error: "invalid_response", errorDescription: "Invalid response")
     }
+
+    static var invalidAppConfig: Self {
+        .init(error: "invalid_app_config", errorDescription: "Missing Dropbox API client_id. Please set it in AppEnv.swift file.")
+    }
 }
 
 protocol ApiClient {
