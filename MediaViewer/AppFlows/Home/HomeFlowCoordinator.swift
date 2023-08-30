@@ -7,6 +7,7 @@ public final class HomeFlowCoordinator {
     private let navigation: UINavigationController
     
     @Dependency(\.authClient) var authClient
+    @Dependency(\.fileEntryRepo) var fileEntryRepo
 
     public init(with navigation: UINavigationController) {
         self.navigation = navigation        
@@ -16,7 +17,8 @@ public final class HomeFlowCoordinator {
     public func start() {
         let viewModel = HomeViewModel(
             dependencies: .init(
-                authClient: authClient
+                authClient: authClient,
+                fileEntryRepo: fileEntryRepo
             ),
             navHandler: navigate
         )
@@ -33,6 +35,8 @@ public final class HomeFlowCoordinator {
         switch event {
         case .logout:
             StartFlowCoordinator(with: navigation).start()
+        case let .openFile(file):
+            () // TODO: show details
         }
     }
 }

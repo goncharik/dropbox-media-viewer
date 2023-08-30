@@ -2,29 +2,26 @@ import Combine
 import Foundation
 import IdentifiedCollections
 
-struct Item: Identifiable {
-    var id: UUID
-}
-
 import UIKit
 @MainActor
 final class HomeViewModel: ObservableObject  {
     enum NavigationEvents {
         case logout
+        case openFile(FileEntry)
     }
 
     struct Dependencies {
         var authClient: AuthClient
+        var fileEntryRepo: FileEntryRepository
     }
 
     private let dependencies: Dependencies
     private let navHandler: @MainActor (NavigationEvents) -> Void
 
-    @Published private(set) var isLoading = false
-    @Published private(set) var items: IdentifiedArrayOf<Item> = [
-        .init(id: UUID()),
-        .init(id: UUID()),
-        .init(id: UUID()),
+    @Published private(set) var isRefreshing = false
+    @Published private(set) var isLoadingMore = false
+    @Published private(set) var items: IdentifiedArrayOf<FileEntry> = [
+        .stub,
     ]
 
     @Published var error: Error?    
@@ -36,8 +33,8 @@ final class HomeViewModel: ObservableObject  {
         self.dependencies = dependencies
         self.navHandler = navHandler
 
-        let fileEntity = FileEntity.stub
-        print(fileEntity)
+        dependencies.fileEntryRepo.filesPublisher
+            .assign(to: &$items)
 
 //        let authSeesion = AuthSession(appEnv: .live, tokenStorage: KeychainTokenStorage(), httpClient: HTTPClientKey.liveValue)
 //        fetchThumbnailForFile(file: fileMock, accessToken: authSeesion.accessToken()) { data, error in
@@ -55,19 +52,31 @@ final class HomeViewModel: ObservableObject  {
     }
 
     func load() async {
-        isLoading = true
-        error = nil
-        
+        isRefreshing = true
+        defer { isRefreshing = false }
+
         do {
-            // ADD API CALL HERE
+            try await dependencies.fileEntryRepo.reload()
         } catch {
             self.error = error
         }
-        isLoading = false
     }
-    
-    func itemSelected(_ item: Item) {
+
+    func loadMoreIfNeeded(_ item: FileEntry) async {
+        guard items.last?.id == item.id else { return }
+
+        isLoadingMore = true
+        defer { isLoadingMore = false }
         
+        do {
+            try await dependencies.fileEntryRepo.loadMoreIfNeeded()
+        } catch {
+            self.error = error
+        }
+    }
+
+    func itemSelected(_ item: FileEntry) {
+        navHandler(.openFile(item))
     }
 
     func logout() async {

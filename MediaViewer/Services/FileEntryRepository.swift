@@ -4,9 +4,9 @@ import Foundation
 import IdentifiedCollections
 
 
-protocol FileEntityRepository {
-    var files: IdentifiedArrayOf<FileEntity> { get }
-    var filesPublisher: Published<IdentifiedArrayOf<FileEntity>>.Publisher { get }
+protocol FileEntryRepository {
+    var files: IdentifiedArrayOf<FileEntry> { get }
+    var filesPublisher: Published<IdentifiedArrayOf<FileEntry>>.Publisher { get }
 
     var isLoading: Bool { get }
     var isLoadingPublisher: Published<Bool>.Publisher { get }
@@ -15,11 +15,11 @@ protocol FileEntityRepository {
     func loadMoreIfNeeded() async throws
 }
 
-final class FileEntityRepositoryImpl: FileEntityRepository, ObservableObject {
-    @Published var files: IdentifiedArrayOf<FileEntity> = []
+final class FileEntryRepositoryImpl: FileEntryRepository, ObservableObject {
+    @Published var files: IdentifiedArrayOf<FileEntry> = []
     @Published var isLoading: Bool = false
 
-    var filesPublisher: Published<IdentifiedArrayOf<FileEntity>>.Publisher { $files }
+    var filesPublisher: Published<IdentifiedArrayOf<FileEntry>>.Publisher { $files }
     var isLoadingPublisher: Published<Bool>.Publisher { $isLoading }
 
     private let apiClient: ApiClient
@@ -31,6 +31,7 @@ final class FileEntityRepositoryImpl: FileEntityRepository, ObservableObject {
         self.apiClient = apiClient
     }
 
+    @MainActor
     func reload() async throws {
         guard !isLoading else { return }
 
@@ -42,6 +43,7 @@ final class FileEntityRepositoryImpl: FileEntityRepository, ObservableObject {
         files = try await fetchMediaFiles(cursor)
     }
 
+    @MainActor
     func loadMoreIfNeeded() async throws {
         guard hasMore, let cursor, !isLoading else { return }
 
@@ -54,7 +56,7 @@ final class FileEntityRepositoryImpl: FileEntityRepository, ObservableObject {
 
     // MARK: - Private helpers
 
-    private func fetchMediaFiles(_ cursor: String?) async throws -> IdentifiedArrayOf<FileEntity> {
+    private func fetchMediaFiles(_ cursor: String?) async throws -> IdentifiedArrayOf<FileEntry> {
         let response: FileEntityListRespose
         if let cursor {
             response = try await apiClient.post(
@@ -71,7 +73,7 @@ final class FileEntityRepositoryImpl: FileEntityRepository, ObservableObject {
         self.cursor = response.cursor
         self.hasMore = response.hasMore
 
-        return response.entities.filter {
+        return response.entries.filter {
             $0.isImage || $0.isVideo
         }
     }
@@ -90,7 +92,7 @@ struct FileEntityListContinueRequest: Encodable {
 }
 
 struct FileEntityListRespose: Decodable {
-    let entities: IdentifiedArrayOf<FileEntity>
+    let entries: IdentifiedArrayOf<FileEntry>
     let cursor: String?
     let hasMore: Bool
 }
@@ -98,17 +100,17 @@ struct FileEntityListRespose: Decodable {
 // MARK: - DI
 
 extension DependencyValues {
-    var fileEntityRepo: any FileEntityRepository {
-        get { self[FileEntityRepositoryKey.self] }
-        set { self[FileEntityRepositoryKey.self] = newValue }
+    var fileEntryRepo: any FileEntryRepository {
+        get { self[FileEntryRepositoryKey.self] }
+        set { self[FileEntryRepositoryKey.self] = newValue }
     }
 }
 
-enum FileEntityRepositoryKey: DependencyKey {
-    static var liveValue: any FileEntityRepository {
+enum FileEntryRepositoryKey: DependencyKey {
+    static var liveValue: any FileEntryRepository {
         @Dependency(\.apiClient) var apiClient
 
-        return FileEntityRepositoryImpl(
+        return FileEntryRepositoryImpl(
             apiClient: apiClient
         )
     }

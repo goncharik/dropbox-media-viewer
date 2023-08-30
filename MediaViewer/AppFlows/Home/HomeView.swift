@@ -4,32 +4,62 @@ struct HomeView: View {
     @ObservedObject var viewModel: HomeViewModel
 
     var body: some View {
-        List {
-            ForEach(viewModel.items) { item in
-                Button {
-                    viewModel.itemSelected(item)
-                } label: {
-                    FileRow()
-                        .frame(maxWidth: .infinity)
-                        .background()
+        ZStack {
+            List {
+                ForEach(viewModel.items) { item in
+                    Button {
+                        viewModel.itemSelected(item)
+                    } label: {
+                        FileRow(fileEntity: item)
+                            .frame(maxWidth: .infinity)
+                            .background()
+                    }
+                    .buttonStyle(PlainButtonStyle())
                 }
-                .buttonStyle(PlainButtonStyle())
+                if viewModel.isLoadingMore {
+                    ProgressView()
+                        .tint(Color.accentColor)
+                }
+            }
+            .listStyle(PlainListStyle())
+            .refreshable {
+                await viewModel.load()
+            }
+            if viewModel.items.isEmpty {
+                if !viewModel.isRefreshing {
+                    VStack(spacing: 16) {
+                        Spacer()
+                        Text("No media files found")
+                            .font(Font.system(size: 16).weight(.medium))
+                        Spacer()
+                    }
+                } else {
+                    ProgressView()
+                        .tint(Color.accentColor)
+                        .scaleEffect(2)
+                }
             }
         }
-        .listStyle(PlainListStyle())
         .navigationTitle("Media Viewer")
         .toolbar {
-            AsyncButton(
-                action: viewModel.logout
-            ) {
-                Text("Logout")
+            ToolbarItem(placement: .navigationBarLeading) {
+                AsyncButton(
+                    action: viewModel.logout
+                ) {
+                    Text("Logout")
+                }
             }
+        }
+        .task {
+            await viewModel.load()
         }
         .errorAlert($viewModel.error)
     }
 }
 
 struct FileRow: View {
+    let fileEntity: FileEntry
+
     var body: some View {
         HStack {
             Image(systemName: "photo")
@@ -39,11 +69,14 @@ struct FileRow: View {
                 .clipShape(RoundedRectangle(cornerRadius: 8))
 
             VStack(alignment: .leading) {
-                Text("Hello, World!")
+                Text(fileEntity.name)
                     .font(.headline)
 
-                Text("Subtitle")
+                Text(fileEntity.pathDisplay)
+                    .lineLimit(1)
+                    .truncationMode(.head)
                     .font(.subheadline)
+                    .foregroundColor(.secondary)
             }
 
             Spacer()
@@ -56,11 +89,13 @@ import Dependencies
 @available(iOS 16.0, *)
 #Preview {
     @Dependency(\.authClient) var authClient
+    @Dependency(\.fileEntryRepo) var fileEntryRepo
     return NavigationStack {
         HomeView(
             viewModel: HomeViewModel(
                 dependencies: .init(
-                    authClient: authClient
+                    authClient: authClient,
+                    fileEntryRepo: fileEntryRepo
                 ),
                 navHandler: { _ in }
             )

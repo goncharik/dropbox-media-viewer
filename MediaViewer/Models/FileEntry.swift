@@ -1,6 +1,6 @@
 import Foundation
 
-struct FileEntity: Hashable, Decodable, Identifiable {
+struct FileEntry: Hashable, Decodable, Identifiable {
     enum CodingKeys: String, CodingKey {
         case tag = ".tag"
         case name
@@ -35,7 +35,7 @@ struct FileEntity: Hashable, Decodable, Identifiable {
 
 // MARK: - Helpers
 
-extension FileEntity {
+extension FileEntry {
     var isFolder: Bool {
         tag == .folder
     }
@@ -62,7 +62,7 @@ extension FileEntity {
 
 // MARK: - Mocks and stubs
 
-extension FileEntity {
+extension FileEntry {
     private static let fileEntityJson = """
     {
         ".tag": "file",
@@ -79,5 +79,5 @@ extension FileEntity {
     }
     """
 
-    static let stub = try! JSONDecoder.default.decode(FileEntity.self, from: fileEntityJson.data(using: .utf8)!)
+    static let stub = try! JSONDecoder.default.decode(FileEntry.self, from: fileEntityJson.data(using: .utf8)!)
 }
