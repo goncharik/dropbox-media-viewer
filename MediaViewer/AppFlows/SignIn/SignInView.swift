@@ -25,7 +25,6 @@ struct SignInView: View {
     NavigationStack {
         SignInView(
             viewModel: SignInViewModel(
-                dependencies: .init(authClient: AuthClientMock()),
                 navHandler: { _ in }
             )
         )
