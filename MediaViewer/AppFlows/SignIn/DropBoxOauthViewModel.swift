@@ -1,4 +1,5 @@
 import Combine
+import Dependencies
 import Foundation
 
 @MainActor
@@ -7,31 +8,24 @@ final class DropBoxOauthViewModel {
         case signedIn
     }
 
-    struct Dependencies {
-        var appEnv: AppEnv
-        var authClient: AuthClient
-    }
-
-    private let dependencies: Dependencies
+    @Dependency(\.authClient) private var authClient
     private let navHandler: @MainActor (NavigationEvents) -> Void
 
     @Published private(set) var isLoading = false
     @Published private(set) var error: Error?
 
     init(
-        dependencies: Dependencies,
         navHandler: @escaping @MainActor (NavigationEvents) -> Void
     ) {
-        self.dependencies = dependencies
         self.navHandler = navHandler
     }
 
     func authUrl() -> URL {
-        dependencies.authClient.oauthURL()
+        authClient.oauthURL()
     }
 
     func redirectUri() -> String {
-        dependencies.appEnv.defaultRedirectUri
+        authClient.redirectUri
     }
 
     func processAuthCode(_ authorizationCode: String) async {
@@ -40,9 +34,9 @@ final class DropBoxOauthViewModel {
         }
         isLoading = true
         print("Code:", authorizationCode)
-        
+
         do {
-            try await dependencies.authClient.signIn(authorizationCode)
+            try await authClient.signIn(authorizationCode)
             navHandler(.signedIn)
         } catch {
             self.error = error

@@ -35,10 +35,6 @@ public final class SignInFlowCoordinator {
     
     private func showDropBoxOauth() {
         let viewModel = DropBoxOauthViewModel(
-            dependencies: .init(
-                appEnv: AppEnv.live, 
-                authClient: authClient
-            ),
             navHandler: navigateDropBoxOauth
         )
         let view = DropBoxOauthViewController(with: viewModel)
