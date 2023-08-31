@@ -1,0 +1,23 @@
+<UILayoutContainerView; frame = (0 0; 393 852); clipsToBounds = YES; autoresize = W+H; gestureRecognizers = <NSArray>; layer = <CALayer>>
+   | <UINavigationTransitionView; frame = (0 0; 393 852); clipsToBounds = YES; autoresize = W+H; layer = <CALayer>>
+   |    | <UIViewControllerWrapperView; frame = (0 0; 393 852); layer = <CALayer>>
+   |    |    | <_TtGC7SwiftUI14_UIHostingViewV11MediaViewer10SignInView_; frame = (0 0; 393 852); gestureRecognizers = <NSArray>; backgroundColor = <UIDynamicSystemColor; name = systemBackgroundColor>; layer = <CALayer>>
+   |    |    |    | <_TtCOCV7SwiftUI11DisplayList11ViewUpdater8Platform13CGDrawingView; frame = (117.333 468.333; 158.667 20.3333); anchorPoint = (0, 0); opaque = NO; autoresizesSubviews = NO; layer = <_TtCOCV7SwiftUI11DisplayList11ViewUpdater8PlatformP33_65A81BD07F0108B0485D2E15DE104A7514CGDrawingLayer>>
+   |    |    |    | <_TtC7SwiftUIP33_A34643117F00277B93DEBAB70EC0697116_UIInheritedView; frame = (91 499; 211 34.6667); anchorPoint = (0, 0); autoresizesSubviews = NO; layer = <CALayer>>
+   |    |    |    |    | <_TtC7SwiftUIP33_A34643117F00277B93DEBAB70EC0697122_UIShapeHitTestingView; frame = (0 0; 211 34.6667); anchorPoint = (0, 0); autoresizesSubviews = NO; backgroundColor = UIExtendedSRGBColorSpace 0.239216 0.603922 0.909804 1; layer = <CALayer>>
+   |    |    |    | <_TtC7SwiftUIP33_A34643117F00277B93DEBAB70EC0697122_UIShapeHitTestingView; frame = (105 507.333; 17 18.3333); anchorPoint = (0, 0); autoresizesSubviews = NO; layer = <_TtC7SwiftUIP33_F176A6CF4451B27508D54E2BEAEBFD5415ColorShapeLayer>>
+   |    |    |    | <_TtCOCV7SwiftUI11DisplayList11ViewUpdater8Platform13CGDrawingView; frame = (132 506; 158 20.3333); anchorPoint = (0, 0); opaque = NO; autoresizesSubviews = NO; layer = <_TtCOCV7SwiftUI11DisplayList11ViewUpdater8PlatformP33_65A81BD07F0108B0485D2E15DE104A7514CGDrawingLayer>>
+   | <UINavigationBar; frame = (0 54; 393 96); opaque = NO; autoresize = W; layer = <CALayer>> delegate=
+   |    | <_UIBarBackground; frame = (0 -54; 393 150); userInteractionEnabled = NO; layer = <CALayer>>
+   |    |    | <UIVisualEffectView; frame = (0 0; 393 150); alpha = 0; layer = <CALayer>> effect=none
+   |    |    |    | <_UIVisualEffectBackdropView; frame = (0 0; 393 150); autoresize = W+H; userInteractionEnabled = NO; layer = <UICABackdropLayer>>
+   |    |    | <_UIBarBackgroundShadowView; frame = (0 150; 393 0.333333); layer = <CALayer>> clientRequestedContentView effect=none
+   |    |    |    | <_UIBarBackgroundShadowContentImageView; frame = (0 0; 393 0.333333); alpha = 0; autoresize = W+H; userInteractionEnabled = NO; backgroundColor = <UIDynamicSystemColor; name = _systemChromeShadowColor>; image = <(null) (null) anonymous; (0 0)@0>; layer = <CALayer>>
+   |    | <_UINavigationBarLargeTitleView; frame = (0 44; 393 52); clipsToBounds = YES; layer = <CALayer>>
+   |    |    | <UILabel; frame = (16 3.66667; 107.667 40.6667); text = 'Sign In'; userInteractionEnabled = NO; backgroundColor = UIExtendedGrayColorSpace 0 0; layer = <_UILabelLayer>>
+   |    | <_UINavigationBarContentView; frame = (0 0; 393 44); layer = <CALayer>> layout=
+   |    |    | <_UIButtonBarStackView; frame = (377 0; 8 44); layer = <CALayer>> axis=horiz distribution=fill alignment=center layoutMarginsRelative NO ARRANGED SUBVIEWS buttonBar=
+   |    |    | <_UINavigationBarTitleControl; frame = (169.667 11.6667; 54 20.3333); layer = <CALayer>>
+   |    |    |    | <UIView; frame = (0 0; 54 20.3333); alpha = 0; layer = <CALayer>>
+   |    |    |    |    | <UILabel; frame = (0 0; 54 20.3333); text = 'Sign In'; userInteractionEnabled = NO; backgroundColor = UIExtendedGrayColorSpace 0 0; layer = <_UILabelLayer>>
+   |    | <_UIPointerInteractionAssistantEffectContainerView; frame = (0 0; 0 0); userInteractionEnabled = NO; layer = <CALayer>>

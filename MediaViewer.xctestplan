@@ -23,15 +23,6 @@
         "identifier" : "44FD4BDD2A9B4058002DC476",
         "name" : "MediaViewerTests"
       }
-    },
-    {
-      "enabled" : false,
-      "parallelizable" : true,
-      "target" : {
-        "containerPath" : "container:MediaViewer.xcodeproj",
-        "identifier" : "44FD4BE72A9B4058002DC476",
-        "name" : "MediaViewerUITests"
-      }
     }
   ],
   "version" : 1

@@ -3,6 +3,7 @@ import IdentifiedCollections
 
 // MARK: - FileEntryRepositoryMock
 
+
 final class FileEntryRepositoryMock: FileEntryRepository {
 
     @Published var files: IdentifiedArrayOf<FileEntry> = []
@@ -20,14 +21,15 @@ final class FileEntryRepositoryMock: FileEntryRepository {
         reloadCallsCount > 0
     }
 
-    var reloadClosure: (() throws -> Void)?
+    var reloadClosure: (() async throws -> Void)?
 
-    func reload() throws {
+    @MainActor
+    func reload() async throws {
         if let error = reloadThrowableError {
             throw error
         }
         reloadCallsCount += 1
-        try reloadClosure?()
+        try await reloadClosure?()
     }
 
     // MARK: - loadMoreIfNeeded

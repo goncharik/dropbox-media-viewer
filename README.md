@@ -7,6 +7,7 @@ This repo contains the full source code for MediaView, an iOS app that uses raw 
 * [Requirements](#requirements)
 * [Getting Started](#getting-started)
 * [Architecture](#architecture)
+* [Testing](#testing)
 * [Dependencies](#dependencies)
 * [License](#license)
 
@@ -41,11 +42,18 @@ Main architecture patter of the app is MVVM+Coordinators. Navigation stack is us
 
 Services have 2 layers. Low layer services (like `ApiClient`, `DataCache`) are used by more higher layer services (like `AuthClinet`, `FileEntityRepository`, `ContentClient`), and those are used by ViewModels.
 
+# Testing
+
+App has unit tests coverage for ViewModels and some services.
+
+Instead of default XCUITests there are snaphot based UI tests. They are less flaky and way more easier to support, mock services without affecting code of the main app, and it's easier to write them.
+
 # Dependencies
 
 * [swift-identified-collections](https://github.com/pointfreeco/swift-identified-collections) - for better collection operations
 * [swift-dependencies](https://github.com/pointfreeco/swift-dependencies) - for better DI
 * [KeychainAccess](https://github.com/kishikawakatsumi/KeychainAccess) - simple keychain wrapper for sequre token storage
+* [SnapshotTesting](https://github.com/pointfreeco/swift-snapshot-testing) - library to make snapshot testing instead of default XCUITests
 
 # License
 
