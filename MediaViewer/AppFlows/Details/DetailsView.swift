@@ -72,8 +72,7 @@ struct DetailsView: View {
     NavigationStack {
         DetailsView(
             viewModel: DetailsViewModel(
-                file: .stub,
-                navHandler: { _ in }
+                file: .stubImage
             )
         )
     }

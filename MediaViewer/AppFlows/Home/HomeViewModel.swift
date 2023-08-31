@@ -74,9 +74,14 @@ final class HomeViewModel: ObservableObject {
     
     }
 
-    func thumbnailProvider(_ item: FileEntry) -> () async throws -> UIImage? {
+    func thumbnailProvider(_ item: FileEntry) -> () async -> UIImage? {
         return { [weak self] in
-            try await self?.dependencies.contentClient.thumbnail(for: item)
+            do {
+                return try await self?.dependencies.contentClient.thumbnail(for: item)
+            } catch {
+                print("Error loading thumbnail:", error)
+                return nil
+            }
         }
     }
 }

@@ -13,22 +13,12 @@ final class DetailsFlowCoordinator {
     /// Entry point to the flow
     func start(_ file: FileEntry) {
         let viewModel = DetailsViewModel(
-            file: file,
-            navHandler: navigate
+            file: file
         )
         let view = UIHostingController(
             rootView: DetailsView(viewModel: viewModel)
         )
 
         navigation.pushViewController(view, animated: true)
-    }
-
-    // MARK: - Private helpers
-
-    private func navigate(_ event: DetailsViewModel.NavigationEvents) {
-        switch event {
-        case .back:
-            navigation.popViewController(animated: true)
-        }
     }
 }

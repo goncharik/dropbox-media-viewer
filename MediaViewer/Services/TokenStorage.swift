@@ -47,3 +47,39 @@ enum TokenStorageKey: DependencyKey {
         KeychainTokenStorage()
     }
 }
+
+// MARK: - TokenStorageMock
+
+final class TokenStorageMock: TokenStorage {
+    
+   // MARK: - save
+
+    var saveCallsCount = 0
+    var saveCalled: Bool {
+        saveCallsCount > 0
+    }
+    var saveReceivedToken: AuthToken?
+    var saveReceivedInvocations: [AuthToken?] = []
+    var saveClosure: ((AuthToken?) -> Void)?
+
+    func save(_ token: AuthToken?) {
+        saveCallsCount += 1
+        saveReceivedToken = token
+        saveReceivedInvocations.append(token)
+        saveClosure?(token)
+    }
+    
+   // MARK: - load
+
+    var loadCallsCount = 0
+    var loadCalled: Bool {
+        loadCallsCount > 0
+    }
+    var loadReturnValue: AuthToken?
+    var loadClosure: (() -> AuthToken?)?
+
+    func load() -> AuthToken? {
+        loadCallsCount += 1
+        return loadClosure.map({ $0() }) ?? loadReturnValue
+    }
+}

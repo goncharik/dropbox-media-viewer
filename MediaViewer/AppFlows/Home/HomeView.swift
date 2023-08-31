@@ -71,7 +71,7 @@ struct HomeView: View {
 
 struct FileRow: View {
     let fileEntity: FileEntry
-    let imageProvider: () async throws -> UIImage?
+    let imageProvider: () async -> UIImage?
 
     var body: some View {
         HStack {
