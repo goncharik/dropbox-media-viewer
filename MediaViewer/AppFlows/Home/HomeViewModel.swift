@@ -1,21 +1,19 @@
 import Combine
+import Dependencies
 import UIKit
 import IdentifiedCollections
 
 @MainActor
 final class HomeViewModel: ObservableObject {
-    enum NavigationEvents {
+    enum NavigationEvents: Equatable {
         case logout
         case openFile(FileEntry)
     }
 
-    struct Dependencies {
-        var authClient: AuthClient
-        var fileEntryRepo: FileEntryRepository
-        var contentClient: ContentClient
-    }
+    @Dependency(\.authClient) private var authClient
+    @Dependency(\.fileEntryRepo) private var fileEntryRepo
+    @Dependency(\.contentClient) private var contentClient
 
-    private let dependencies: Dependencies
     private let navHandler: @MainActor (NavigationEvents) -> Void
 
     @Published private(set) var isRefreshing = false
@@ -25,13 +23,11 @@ final class HomeViewModel: ObservableObject {
     @Published var error: Error?
 
     init(
-        dependencies: Dependencies,
         navHandler: @escaping @MainActor (NavigationEvents) -> Void
     ) {
-        self.dependencies = dependencies
         self.navHandler = navHandler
 
-        dependencies.fileEntryRepo.filesPublisher
+        fileEntryRepo.filesPublisher
             .receive(on: DispatchQueue.main)
             .assign(to: &$items)
     }
@@ -41,7 +37,7 @@ final class HomeViewModel: ObservableObject {
         defer { isRefreshing = false }
 
         do {
-            try await dependencies.fileEntryRepo.reload()
+            try await fileEntryRepo.reload()
         } catch {
             self.error = error
         }
@@ -54,7 +50,7 @@ final class HomeViewModel: ObservableObject {
         defer { isLoadingMore = false }
 
         do {
-            try await dependencies.fileEntryRepo.loadMoreIfNeeded()
+            try await fileEntryRepo.loadMoreIfNeeded()
         } catch {
             self.error = error
         }
@@ -65,19 +61,19 @@ final class HomeViewModel: ObservableObject {
     }
 
     func logout() async {
-        await dependencies.authClient.logout()
+        await authClient.logout()
+        contentClient.clearCaches()
         navHandler(.logout)
     }
 
     func clearCaches() {
-        dependencies.contentClient.clearCaches()
-    
+        contentClient.clearCaches()
     }
 
     func thumbnailProvider(_ item: FileEntry) -> () async -> UIImage? {
         return { [weak self] in
             do {
-                return try await self?.dependencies.contentClient.thumbnail(for: item)
+                return try await self?.contentClient.thumbnail(for: item)
             } catch {
                 print("Error loading thumbnail:", error)
                 return nil

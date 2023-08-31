@@ -16,8 +16,8 @@ protocol FileEntryRepository {
 }
 
 final class FileEntryRepositoryImpl: FileEntryRepository, ObservableObject {
-    @Published var files: IdentifiedArrayOf<FileEntry> = []
-    @Published var isLoading: Bool = false
+    @Published private(set) var files: IdentifiedArrayOf<FileEntry> = []
+    @Published private(set) var isLoading: Bool = false
 
     var filesPublisher: Published<IdentifiedArrayOf<FileEntry>>.Publisher { $files }
     var isLoadingPublisher: Published<Bool>.Publisher { $isLoading }

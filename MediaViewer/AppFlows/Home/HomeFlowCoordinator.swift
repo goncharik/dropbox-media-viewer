@@ -6,10 +6,6 @@ import Dependencies
 public final class HomeFlowCoordinator {
     private let navigation: UINavigationController
     
-    @Dependency(\.authClient) var authClient
-    @Dependency(\.fileEntryRepo) var fileEntryRepo
-    @Dependency(\.contentClient) var contentClient
-
     public init(with navigation: UINavigationController) {
         self.navigation = navigation        
     }
@@ -17,11 +13,6 @@ public final class HomeFlowCoordinator {
     /// Entry point to the flow
     public func start() {
         let viewModel = HomeViewModel(
-            dependencies: .init(
-                authClient: authClient,
-                fileEntryRepo: fileEntryRepo,
-                contentClient: contentClient
-            ),
             navHandler: navigate
         )
         let view = UIHostingController(

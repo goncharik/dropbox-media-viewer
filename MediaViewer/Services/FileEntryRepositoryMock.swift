@@ -4,41 +4,13 @@ import IdentifiedCollections
 // MARK: - FileEntryRepositoryMock
 
 final class FileEntryRepositoryMock: FileEntryRepository {
-    // MARK: - files
 
-    var files: IdentifiedArrayOf<FileEntry> {
-        get { underlyingFiles }
-        set(value) { underlyingFiles = value }
-    }
+    @Published var files: IdentifiedArrayOf<FileEntry> = []
+    @Published var isLoading: Bool = false
 
-    private var underlyingFiles: IdentifiedArrayOf<FileEntry>!
+    var filesPublisher: Published<IdentifiedArrayOf<FileEntry>>.Publisher { $files }
+    var isLoadingPublisher: Published<Bool>.Publisher { $isLoading }
 
-    // MARK: - filesPublisher
-
-    var filesPublisher: Published<IdentifiedArrayOf<FileEntry>>.Publisher {
-        get { underlyingFilesPublisher }
-        set(value) { underlyingFilesPublisher = value }
-    }
-
-    private var underlyingFilesPublisher: Published<IdentifiedArrayOf<FileEntry>>.Publisher!
-
-    // MARK: - isLoading
-
-    var isLoading: Bool {
-        get { underlyingIsLoading }
-        set(value) { underlyingIsLoading = value }
-    }
-
-    private var underlyingIsLoading: Bool!
-
-    // MARK: - isLoadingPublisher
-
-    var isLoadingPublisher: Published<Bool>.Publisher {
-        get { underlyingIsLoadingPublisher }
-        set(value) { underlyingIsLoadingPublisher = value }
-    }
-
-    private var underlyingIsLoadingPublisher: Published<Bool>.Publisher!
 
     // MARK: - reload
 

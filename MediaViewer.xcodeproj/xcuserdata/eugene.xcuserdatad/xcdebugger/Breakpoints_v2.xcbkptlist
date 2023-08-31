@@ -337,5 +337,131 @@
             </Locations>
          </BreakpointContent>
       </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "79DBD2F3-F41D-4351-A42A-388DE6C827BB"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MediaViewer/AppFlows/Home/HomeViewModelTests.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "190"
+            endingLineNumber = "190"
+            landmarkName = "testErrorOnLoadMoreWithError()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "F4D98CAF-5C32-4C36-882F-1D14BDD37502"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MediaViewer/Services/FileEntryRepositoryMock.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "44"
+            endingLineNumber = "44"
+            landmarkName = "loadMoreIfNeeded()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "C4CEF858-E2C6-42EA-8EA4-20B960D708D1"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MediaViewer/AppFlows/Home/HomeViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "47"
+            endingLineNumber = "47"
+            landmarkName = "loadMoreIfNeeded(for:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "A273D1A6-08A8-41BA-A12B-01153FBB9BF8"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MediaViewer/AppFlows/Home/HomeViewModelTests.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "186"
+            endingLineNumber = "186"
+            landmarkName = "testErrorOnLoadMoreWithError()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "A273D1A6-08A8-41BA-A12B-01153FBB9BF8 - e1b264a465dd7cf"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(5) suspend resume partial function for MediaViewerTests.HomeViewModelTests.testErrorOnLoadMoreWithError() async -&gt; ()"
+                  moduleName = "MediaViewerTests"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/eugene/Documents/Development/Personal/MediaViewer/MediaViewer/AppFlows/Home/HomeViewModelTests.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "188"
+                  endingLineNumber = "188"
+                  offsetFromSymbolStart = "316">
+               </Location>
+               <Location
+                  uuid = "A273D1A6-08A8-41BA-A12B-01153FBB9BF8 - 5f38ac3499e41383"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(3) suspend resume partial function for MediaViewerTests.HomeViewModelTests.testErrorOnLoadMoreWithError() async -&gt; ()"
+                  moduleName = "MediaViewerTests"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/eugene/Documents/Development/Personal/MediaViewer/MediaViewer/AppFlows/Home/HomeViewModelTests.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "186"
+                  endingLineNumber = "186"
+                  offsetFromSymbolStart = "272">
+               </Location>
+               <Location
+                  uuid = "A273D1A6-08A8-41BA-A12B-01153FBB9BF8 - 3e8fbbd89d58d6d3"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(4) await resume partial function for MediaViewerTests.HomeViewModelTests.testErrorOnLoadMoreWithError() async -&gt; ()"
+                  moduleName = "MediaViewerTests"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/eugene/Documents/Development/Personal/MediaViewer/MediaViewer/AppFlows/Home/HomeViewModelTests.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "186"
+                  endingLineNumber = "186"
+                  offsetFromSymbolStart = "40">
+               </Location>
+               <Location
+                  uuid = "A273D1A6-08A8-41BA-A12B-01153FBB9BF8 - e1b264a465dd781"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(5) suspend resume partial function for MediaViewerTests.HomeViewModelTests.testErrorOnLoadMoreWithError() async -&gt; ()"
+                  moduleName = "MediaViewerTests"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/eugene/Documents/Development/Personal/MediaViewer/MediaViewer/AppFlows/Home/HomeViewModelTests.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "186"
+                  endingLineNumber = "186"
+                  offsetFromSymbolStart = "180">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
    </Breakpoints>
 </Bucket>

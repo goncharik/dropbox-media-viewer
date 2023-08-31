@@ -42,8 +42,7 @@ final class DetailsViewModelTests: XCTestCase {
         contentClientMock.fullsizeImageForThrowableError = TestError.test
 
         // When
-        let expectation = XCTestExpectation(description: "contentImageProvider")
-        let result = await sut.contentImageProvider()()
+        let _ = await sut.contentImageProvider()()
 
         // Then
         XCTAssertEqual(sut.error as? TestError, TestError.test)
@@ -67,7 +66,7 @@ final class DetailsViewModelTests: XCTestCase {
         contentClientMock.videoFileUrlForThrowableError = TestError.test
 
         // When
-        let result = await sut.contentVideoProvider()()
+        let _ = await sut.contentVideoProvider()()
 
         // Then
         XCTAssertEqual(sut.error as? TestError, TestError.test)

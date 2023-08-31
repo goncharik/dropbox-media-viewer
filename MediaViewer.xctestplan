@@ -1,0 +1,38 @@
+{
+  "configurations" : [
+    {
+      "id" : "74405D03-891E-47A9-AA91-33C2D51F639A",
+      "name" : "Test Scheme Action",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "targetForVariableExpansion" : {
+      "containerPath" : "container:MediaViewer.xcodeproj",
+      "identifier" : "44FD4BCC2A9B4055002DC476",
+      "name" : "MediaViewer"
+    }
+  },
+  "testTargets" : [
+    {
+      "parallelizable" : true,
+      "target" : {
+        "containerPath" : "container:MediaViewer.xcodeproj",
+        "identifier" : "44FD4BDD2A9B4058002DC476",
+        "name" : "MediaViewerTests"
+      }
+    },
+    {
+      "enabled" : false,
+      "parallelizable" : true,
+      "target" : {
+        "containerPath" : "container:MediaViewer.xcodeproj",
+        "identifier" : "44FD4BE72A9B4058002DC476",
+        "name" : "MediaViewerUITests"
+      }
+    }
+  ],
+  "version" : 1
+}

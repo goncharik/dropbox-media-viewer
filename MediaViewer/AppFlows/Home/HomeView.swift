@@ -100,17 +100,9 @@ struct FileRow: View {
 import Dependencies
 @available(iOS 16.0, *)
 #Preview {
-    @Dependency(\.authClient) var authClient
-    @Dependency(\.fileEntryRepo) var fileEntryRepo
-    @Dependency(\.contentClient) var contentClient
-    return NavigationStack {
+    NavigationStack {
         HomeView(
             viewModel: HomeViewModel(
-                dependencies: .init(
-                    authClient: authClient,
-                    fileEntryRepo: fileEntryRepo,
-                    contentClient: contentClient
-                ),
                 navHandler: { _ in }
             )
         )
