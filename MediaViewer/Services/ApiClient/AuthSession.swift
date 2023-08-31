@@ -1,3 +1,4 @@
+import Dependencies
 import Foundation
 
 enum AuthError: Error {
@@ -5,7 +6,17 @@ enum AuthError: Error {
     case invalidToken
 }
 
-actor AuthSession {
+protocol AuthSessionProtocol {
+    func isAuthorized() -> Bool
+    func validToken() async throws -> AuthToken
+    @discardableResult
+    func refreshToken() async throws -> AuthToken
+    @discardableResult
+    func obtainToken(for authorizationCode: String) async throws -> AuthToken
+    func logout() async
+}
+
+actor AuthSession: AuthSessionProtocol {
     private nonisolated let currentToken: Isolated<AuthToken?>
 
     private var refreshTask: Task<AuthToken, Error>?
@@ -131,5 +142,27 @@ actor AuthSession {
 
     func logout() {
         currentToken.value = nil
+    }
+}
+
+// MARK: - DI
+
+extension DependencyValues {
+    var authSession: AuthSession {
+        get { self[AuthSession.self] }
+        set { self[AuthSession.self] = newValue }
+    }
+}
+
+extension AuthSession: DependencyKey {
+    static var liveValue: AuthSession {
+        @Dependency(\.httpClient) var httpClient
+        @Dependency(\.tokenStorage) var tokenStorage
+
+        return AuthSession(
+            appEnv: .live,
+            tokenStorage: tokenStorage,
+            httpClient: httpClient
+        )
     }
 }

@@ -31,6 +31,9 @@
 		449B2E1E2AA05D8200CD42A9 /* HomeViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 449B2E1D2AA05D8200CD42A9 /* HomeViewModelTests.swift */; };
 		449B2E202AA0945000CD42A9 /* SignInViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 449B2E1F2AA0945000CD42A9 /* SignInViewModelTests.swift */; };
 		449B2E222AA096B300CD42A9 /* DropBoxOauthViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 449B2E212AA096B300CD42A9 /* DropBoxOauthViewModelTests.swift */; };
+		449B2E242AA09C2B00CD42A9 /* AuthClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 449B2E232AA09C2B00CD42A9 /* AuthClientTests.swift */; };
+		449B2E262AA0A0BC00CD42A9 /* AuthSessionMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 449B2E252AA0A0BC00CD42A9 /* AuthSessionMock.swift */; };
+		449B2E282AA0A20200CD42A9 /* ApiClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 449B2E272AA0A20200CD42A9 /* ApiClientTests.swift */; };
 		44E0287B2A9F25C1004126B6 /* DataCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44E0287A2A9F25C1004126B6 /* DataCache.swift */; };
 		44E0287E2A9F2757004126B6 /* String+md5.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44E0287D2A9F2757004126B6 /* String+md5.swift */; };
 		44E028802A9F4001004126B6 /* Encodable+JsonString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44E0287F2A9F4001004126B6 /* Encodable+JsonString.swift */; };
@@ -103,6 +106,9 @@
 		449B2E1D2AA05D8200CD42A9 /* HomeViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModelTests.swift; sourceTree = "<group>"; };
 		449B2E1F2AA0945000CD42A9 /* SignInViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewModelTests.swift; sourceTree = "<group>"; };
 		449B2E212AA096B300CD42A9 /* DropBoxOauthViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropBoxOauthViewModelTests.swift; sourceTree = "<group>"; };
+		449B2E232AA09C2B00CD42A9 /* AuthClientTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthClientTests.swift; sourceTree = "<group>"; };
+		449B2E252AA0A0BC00CD42A9 /* AuthSessionMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthSessionMock.swift; sourceTree = "<group>"; };
+		449B2E272AA0A20200CD42A9 /* ApiClientTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiClientTests.swift; sourceTree = "<group>"; };
 		44E0287A2A9F25C1004126B6 /* DataCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataCache.swift; sourceTree = "<group>"; };
 		44E0287D2A9F2757004126B6 /* String+md5.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+md5.swift"; sourceTree = "<group>"; };
 		44E0287F2A9F4001004126B6 /* Encodable+JsonString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Encodable+JsonString.swift"; sourceTree = "<group>"; };
@@ -188,8 +194,10 @@
 			isa = PBXGroup;
 			children = (
 				441A29D82A9DFAB100E69ABB /* ApiClient.swift */,
+				449B2E272AA0A20200CD42A9 /* ApiClientTests.swift */,
 				449B2E102AA0529300CD42A9 /* ApiClientMock.swift */,
 				441A29E22A9DFFE000E69ABB /* AuthSession.swift */,
+				449B2E252AA0A0BC00CD42A9 /* AuthSessionMock.swift */,
 				441A29E02A9DFF3F00E69ABB /* HTTPClient.swift */,
 			);
 			path = ApiClient;
@@ -331,6 +339,7 @@
 				441A29DA2A9DFB8900E69ABB /* TokenStorage.swift */,
 				44FD4C1E2A9B5BF6002DC476 /* AppEnv.swift */,
 				44FD4C202A9B5C40002DC476 /* AuthClient.swift */,
+				449B2E232AA09C2B00CD42A9 /* AuthClientTests.swift */,
 				449B2E122AA053C700CD42A9 /* AuthClientMock.swift */,
 				44FD4C222A9B5C6E002DC476 /* FileEntryRepository.swift */,
 				449B2E142AA053E900CD42A9 /* FileEntryRepositoryMock.swift */,
@@ -526,6 +535,7 @@
 				441A29E62A9F010400E69ABB /* FileEntry.swift in Sources */,
 				44FD4BFC2A9B421F002DC476 /* AppDelegate.swift in Sources */,
 				44E0287B2A9F25C1004126B6 /* DataCache.swift in Sources */,
+				449B2E262AA0A0BC00CD42A9 /* AuthSessionMock.swift in Sources */,
 				44FD4C232A9B5C6E002DC476 /* FileEntryRepository.swift in Sources */,
 				44FD4C042A9B434F002DC476 /* StartFlowCoordinator.swift in Sources */,
 				44FD4BFE2A9B424E002DC476 /* SceneDelegate.swift in Sources */,
@@ -540,9 +550,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				449B2E242AA09C2B00CD42A9 /* AuthClientTests.swift in Sources */,
 				449B2E202AA0945000CD42A9 /* SignInViewModelTests.swift in Sources */,
 				449B2E222AA096B300CD42A9 /* DropBoxOauthViewModelTests.swift in Sources */,
 				44FD4BE32A9B4058002DC476 /* MediaViewerTests.swift in Sources */,
+				449B2E282AA0A20200CD42A9 /* ApiClientTests.swift in Sources */,
 				449B2E192AA054D300CD42A9 /* DetailsViewModelTests.swift in Sources */,
 				449B2E1E2AA05D8200CD42A9 /* HomeViewModelTests.swift in Sources */,
 			);

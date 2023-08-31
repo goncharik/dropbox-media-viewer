@@ -1,7 +1,7 @@
 import Dependencies
 import Foundation
 
-struct ApiError: Error, Decodable {
+struct ApiError: Error, Hashable, Decodable {
     let error: String
     let errorDescription: String
 
@@ -27,9 +27,9 @@ protocol ApiClient {
 final class ApiClientImpl: ApiClient {
     private let appEnv: AppEnv
     private let httpClient: HTTPClient
-    private let authSession: AuthSession
+    private let authSession: AuthSessionProtocol
 
-    init(appEnv: AppEnv, httpClient: HTTPClient, authSession: AuthSession) {
+    init(appEnv: AppEnv, httpClient: HTTPClient, authSession: AuthSessionProtocol) {
         self.appEnv = appEnv
         self.httpClient = httpClient
         self.authSession = authSession
@@ -156,14 +156,9 @@ extension DependencyValues {
 enum ApiClientKey: DependencyKey {
     static var liveValue: any ApiClient {
         @Dependency(\.httpClient) var httpClient
-        @Dependency(\.tokenStorage) var tokenStorage
+        @Dependency(\.authSession) var authSession
 
         let appEnv = AppEnv.live
-        let authSession = AuthSession(
-            appEnv: appEnv,
-            tokenStorage: tokenStorage,
-            httpClient: httpClient
-        )
         return ApiClientImpl(
             appEnv: appEnv,
             httpClient: httpClient,

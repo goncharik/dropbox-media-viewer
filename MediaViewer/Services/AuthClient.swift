@@ -1,6 +1,5 @@
 import Dependencies
 import Foundation
-import KeychainAccess
 
 protocol AuthClient {
     var redirectUri: String { get }

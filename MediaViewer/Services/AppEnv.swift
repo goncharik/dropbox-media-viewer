@@ -23,3 +23,18 @@ extension AppEnv {
         )
     }
 }
+
+// MARK: - Mock value
+
+extension AppEnv {
+    static var mock: Self {
+        Self(
+            clientId: "clientId",
+            clientSecret: "clientSecret",
+            baseUrl: "https://baseUrl",
+            oauthUrl: "https://oauthUrl",
+            contentUrl: "https://contentUrl",
+            defaultRedirectUri: "https://defaultRedirectUri"
+        )
+    }
+}
