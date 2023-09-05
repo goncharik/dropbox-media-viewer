@@ -14,8 +14,8 @@ struct HomeView: View {
                             fileEntity: item,
                             imageProvider: viewModel.thumbnailProvider(item)
                         )
-                            .frame(maxWidth: .infinity)
-                            .background()
+                        .frame(maxWidth: .infinity)
+                        .background()
                     }
                     .buttonStyle(PlainButtonStyle())
                     .task {
@@ -49,10 +49,14 @@ struct HomeView: View {
         .navigationTitle("Media Viewer")
         .toolbar {
             ToolbarItem(placement: .navigationBarLeading) {
-                AsyncButton(
-                    action: viewModel.logout
-                ) {
-                    Text("Logout")
+                if viewModel.isLogoutAvailable {
+                    AsyncButton(
+                        action: viewModel.logout
+                    ) {
+                        Text("Logout")
+                    }
+                } else {
+                    EmptyView()
                 }
             }
 
@@ -97,7 +101,6 @@ struct FileRow: View {
 
 // MARK: - Preview
 
-import Dependencies
 @available(iOS 16.0, *)
 #Preview {
     NavigationStack {

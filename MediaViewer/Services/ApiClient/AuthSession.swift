@@ -8,7 +8,7 @@ enum AuthError: Error {
 
 protocol AuthSessionProtocol {
     func isAuthorized() -> Bool
-    func validToken() async throws -> AuthToken
+    func validToken() async throws -> String
     @discardableResult
     func refreshToken() async throws -> AuthToken
     @discardableResult
@@ -36,12 +36,21 @@ actor AuthSession: AuthSessionProtocol {
     }
 
     nonisolated func isAuthorized() -> Bool {
-        currentToken.value != nil
+        switch appEnv.appAuthType {
+        case .oauth:
+            return currentToken.value != nil
+        case .accessToken:
+            return true
+        }
     }
 
-    func validToken() async throws -> AuthToken {
+    func validToken() async throws -> String {
+        if case let .accessToken(token) = appEnv.appAuthType {
+            return token
+        }
+
         if let handle = refreshTask {
-            return try await handle.value
+            return try await handle.value.accessToken
         }
 
         guard let token = currentToken.value else {
@@ -49,10 +58,10 @@ actor AuthSession: AuthSessionProtocol {
         }
 
         if token.isValid {
-            return token
+            return token.accessToken
         }
 
-        return try await refreshToken()
+        return try await refreshToken().accessToken
     }
 
     @discardableResult
@@ -76,8 +85,8 @@ actor AuthSession: AuthSessionProtocol {
             let bodyParameters = [
                 "grant_type": "refresh_token",
                 "refresh_token": refreshToken,
-                "client_id": appEnv.clientId,
-                "client_secret": appEnv.clientSecret,
+                "client_id": appEnv.clientId ?? "",
+                "client_secret": appEnv.clientSecret ?? "",
             ]
             request.httpBody = bodyParameters
                 .map { "\($0.key)=\($0.value)" }
@@ -121,8 +130,8 @@ actor AuthSession: AuthSessionProtocol {
             "grant_type": "authorization_code",
             "code": authorizationCode,
             "redirect_uri": redirectURI,
-            "client_id": clientID,
-            "client_secret": clientSecret,
+            "client_id": clientID ?? "",
+            "client_secret": clientSecret ?? "",
         ]
 
         let bodyData = bodyParameters

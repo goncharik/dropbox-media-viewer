@@ -16,6 +16,10 @@ final class HomeViewModel: ObservableObject {
 
     private let navHandler: @MainActor (NavigationEvents) -> Void
 
+    var isLogoutAvailable: Bool {
+        authClient.isLogoutAllowed()
+    }
+
     @Published private(set) var isRefreshing = false
     @Published private(set) var isLoadingMore = false
     @Published private(set) var items: IdentifiedArrayOf<FileEntry> = []

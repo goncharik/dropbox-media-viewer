@@ -36,6 +36,12 @@ with your values.
 
 You may also update `defaultRedirectUri` to what you prefer.
 
+### Aletrnative authentication flow
+
+You may also use alternative authentication flow with just access token value. For that in `AppEnv.swift` replace `empty-access-token` with your token value. 
+
+_Note: Access token flow is mostly for testing and debuging purposes. It will not work correctly cause it doesn't have refresh token to automatically refresh itself after expiration time_
+
 # Architecture
 
 Main architecture patter of the app is MVVM+Coordinators. Navigation stack is used from `UIKit` but most of the screens are done via `SwiftUI`. Such architecture is quite flexible and allows to write logic code in full separation from UI implementation.

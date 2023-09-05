@@ -60,6 +60,21 @@ final class AuthClientMock: AuthClient {
         return isAuthorizedClosure.map { $0() } ?? isAuthorizedReturnValue
     }
 
+    // MARK: - isLogoutAllowed
+
+    var isLogoutAllowedCallsCount = 0
+    var isLogoutAllowedCalled: Bool {
+        isLogoutAllowedCallsCount > 0
+    }
+
+    var isLogoutAllowedReturnValue: Bool = false
+    var isLogoutAllowedClosure: (() -> Bool)?
+
+    func isLogoutAllowed() -> Bool {
+        isLogoutAllowedCallsCount += 1
+        return isLogoutAllowedClosure.map { $0() } ?? isLogoutAllowedReturnValue
+    }
+
     // MARK: - signIn
 
     var signInThrowableError: Error?

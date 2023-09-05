@@ -24,7 +24,7 @@ final class AuthClientTests: XCTestCase {
 
     func testCheckAppConfigurationSuccess() throws {
         // Given
-        appEnvMock.clientId = "valid-client-id"
+        appEnvMock.appAuthType = .oauth(clientId: "valid-client-id", clientSecret: "valid-client-secret")
         sut = AuthClientImpl(appEnv: appEnvMock, apiClient: apiClientMock)
 
         // Then
@@ -33,7 +33,7 @@ final class AuthClientTests: XCTestCase {
 
     func testCheckAppConfigurationFailure() throws {
         // Given
-        appEnvMock.clientId = "empty-client-id"
+        appEnvMock.appAuthType = .oauth(clientId: "empty-client-id", clientSecret: "empty-client-secret")
         sut = AuthClientImpl(appEnv: appEnvMock, apiClient: apiClientMock)
 
         // When
@@ -46,7 +46,7 @@ final class AuthClientTests: XCTestCase {
     func testOAuthURL() {
         // Given
         appEnvMock.oauthUrl = "https://example.com/oauth"
-        appEnvMock.clientId = "valid-client-id"
+        appEnvMock.appAuthType = .oauth(clientId: "valid-client-id", clientSecret: "valid-client-secret")
         appEnvMock.defaultRedirectUri = "default-redirect-uri"
         sut = AuthClientImpl(appEnv: appEnvMock, apiClient: apiClientMock)
         

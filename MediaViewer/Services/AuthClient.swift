@@ -7,6 +7,7 @@ protocol AuthClient {
     func oauthURL() -> URL
 
     func isAuthorized() -> Bool
+    func isLogoutAllowed() -> Bool
     func signIn(_ authCode: String) async throws
     func logout() async
 }
@@ -26,16 +27,24 @@ final class AuthClientImpl: AuthClient {
     }
 
     func checkAppConfiguration() throws {
-        guard appEnv.clientId != "empty-client-id" else {
-            throw ApiError.invalidAppConfig
+        switch appEnv.appAuthType {
+        case let .oauth(clientId, _):
+            guard clientId != "empty-client-id" else {
+                throw ApiError.invalidAppConfig
+            }
+        case let .accessToken(token):
+            guard token != "empty-access-token" else {
+                throw ApiError.invalidAppConfig
+            }
         }
+
     }
 
     func oauthURL() -> URL {
         var components = URLComponents(string: appEnv.oauthUrl)!
 
         components.queryItems = [
-            URLQueryItem(name: "client_id", value: appEnv.clientId),
+            URLQueryItem(name: "client_id", value: appEnv.clientId ?? ""),
             URLQueryItem(name: "response_type", value: "code"),
             URLQueryItem(name: "redirect_uri", value: appEnv.defaultRedirectUri),
             URLQueryItem(name: "token_access_type", value: "offline"),
@@ -47,7 +56,16 @@ final class AuthClientImpl: AuthClient {
     }
 
     func isAuthorized() -> Bool {
-        apiClient.isAuthorized()    
+        apiClient.isAuthorized()
+    }
+
+    func isLogoutAllowed() -> Bool {
+        switch appEnv.appAuthType {
+        case .oauth:
+            return true
+        case .accessToken:
+            return false
+        }
     }
 
     func signIn(_ authCode: String) async throws {

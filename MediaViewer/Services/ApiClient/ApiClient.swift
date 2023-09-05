@@ -86,7 +86,7 @@ final class ApiClientImpl: ApiClient {
         request.httpMethod = "POST"
         
         let token = try await authSession.validToken()
-        request.setValue("Bearer \(token.accessToken)", forHTTPHeaderField: "Authorization")
+        request.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
 
         let file = try body?.toJsonString() ?? "{}"
         request.addValue(file, forHTTPHeaderField: "Dropbox-API-Arg")
@@ -127,7 +127,7 @@ final class ApiClientImpl: ApiClient {
     private func runAuthorized(_ request: URLRequest, allowRetry: Bool = true) async throws -> Data {
         var request = request
         let token = try await authSession.validToken()
-        request.setValue("Bearer \(token.accessToken)", forHTTPHeaderField: "Authorization")
+        request.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
         print("Request:", request.debugDescription)
         let (data, urlResponse) = try await httpClient.data(for: request)
 

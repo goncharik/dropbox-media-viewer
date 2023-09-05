@@ -26,10 +26,10 @@ final class AuthSessionProtocolMock: AuthSessionProtocol {
         validTokenCallsCount > 0
     }
 
-    var validTokenReturnValue: AuthToken!
-    var validTokenClosure: (() throws -> AuthToken)?
+    var validTokenReturnValue: String!
+    var validTokenClosure: (() throws -> String)?
 
-    func validToken() throws -> AuthToken {
+    func validToken() throws -> String {
         if let error = validTokenThrowableError {
             throw error
         }

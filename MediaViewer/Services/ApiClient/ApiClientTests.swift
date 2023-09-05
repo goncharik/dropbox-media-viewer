@@ -62,9 +62,7 @@ final class ApiClientTests: XCTestCase {
         let expectedResult = MockCodableModel()
         let mockParams = ["key": "value"]
         httpClientMock.dataForReturnValue = try (JSONEncoder.default.encode(expectedResult), HTTPURLResponse())
-        authSessionMock.validTokenReturnValue = AuthToken(
-            accessToken: "accessToken", tokenType: "tokenType", expiresIn: 100, createdAt: Date()
-        )
+        authSessionMock.validTokenReturnValue = "accessToken"
 
         // When
         let result: MockCodableModel = try await apiClient.get(path: "/test", params: mockParams)
@@ -79,9 +77,7 @@ final class ApiClientTests: XCTestCase {
         let expectedRequestBody = MockCodableModel()
         let expectedResult = MockCodableModel()
         httpClientMock.dataForReturnValue = try (JSONEncoder.default.encode(expectedResult), HTTPURLResponse())
-        authSessionMock.validTokenReturnValue = AuthToken(
-            accessToken: "accessToken", tokenType: "tokenType", expiresIn: 100, createdAt: Date()
-        )
+        authSessionMock.validTokenReturnValue = "accessToken"
 
         // When
         let result: MockCodableModel = try await apiClient.post(path: "/test", body: expectedRequestBody)
